@@ -6,6 +6,16 @@
     let cantidad = 0;
     let precio = 0;
     let imageFile = null; // Archivo de imagen seleccionado
+    let imageUrl = ""; // Variable para almacenar la URL de la imagen seleccionada
+
+    // Función para manejar el cambio de imagen
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            imageFile = file;
+            imageUrl = URL.createObjectURL(file); // Crear la URL de la imagen
+        }
+    };
 
     // Configuración de Cloudinary
     const cloudinaryUrl = "https://api.cloudinary.com/v1_1/djtukekvp/image/upload";
@@ -50,41 +60,40 @@
             .replace(/[^a-z0-9]/gi, "") // Eliminar caracteres especiales
             .replace(/\s+/g, ""); // Eliminar espacios
 
-            const addProduct = async () => {
-    const urlImagen = await subirImagen();
+    const addProduct = async () => {
+        const urlImagen = await subirImagen();
 
-    if (urlImagen && nombre && descripcion && precio > 0 && cantidad > 0) {
-        const nombreLimpio = limpiarNombre(nombre);
+        if (urlImagen && nombre && descripcion && precio > 0 && cantidad > 0) {
+            const nombreLimpio = limpiarNombre(nombre);
 
-        const nuevoProducto = {
-            id: Date.now(),
-            nombre,
-            descripcion,
-            precio,
-            unidades: cantidad,
-            valoracion: parseFloat((Math.random() * 4.5 + 0.5).toFixed(1)), // Valoración entre 0.5 y 5
-            urlImagen // Usamos la URL devuelta por Cloudinary
-        };
+            const nuevoProducto = {
+                id: Date.now(),
+                nombre,
+                descripcion,
+                precio,
+                unidades: cantidad,
+                valoracion: parseFloat((Math.random() * 4.5 + 0.5).toFixed(1)), // Valoración entre 0.5 y 5
+                urlImagen // Usamos la URL devuelta por Cloudinary
+            };
 
-        // Actualiza el store con el nuevo producto
-        productos.addProducto(nuevoProducto);
+            // Actualiza el store con el nuevo producto
+            productos.addProducto(nuevoProducto);
 
-        // Limpia los campos del formulario
-        nombre = "";
-        descripcion = "";
-        cantidad = 0;
-        precio = 0;
+            // Limpia los campos del formulario
+            nombre = "";
+            descripcion = "";
+            cantidad = 0;
+            precio = 0;
+            imageUrl = ""; // Limpiar la imagen mostrada
 
-        alert("Producto añadido!");
-        console.log("Nuevo producto añadido:", nuevoProducto);
+            alert("Producto añadido!");
+            console.log("Nuevo producto añadido:", nuevoProducto);
 
-    } else {
-        alert("Por favor, rellena todos los campos correctamente.");
-    }
-};
-
+        } else {
+            alert("Por favor, rellena todos los campos correctamente.");
+        }
+    };
 </script>
-
 
 <div class="addProduct-container">
     <div class="addproduct-img-info">
@@ -93,9 +102,13 @@
                 type="file" 
                 id="fileInput" 
                 accept="image/*"
-                on:change={(event) => imageFile = event.target.files[0]}
+                on:change={handleFileChange} 
             />
             <label for="fileInput" class="custom-label">+</label>
+            <!-- Mostrar la imagen seleccionada -->
+            {#if imageUrl}
+                <img src={imageUrl} alt="Imagen del producto" class="selected-image" />
+            {/if}
         </div>
         
         <div class="product-info">
@@ -116,9 +129,7 @@
     </div>
     <div class="product-unidades-price">
         <div class="product-unidades">
-            <button on:click={() => (cantidad = Math.max(0, cantidad - 1))}
-                >-</button
-            >
+            <button on:click={() => (cantidad = Math.max(0, cantidad - 1))}>-</button>
             <input type="number" bind:value={cantidad} min="0" />
             <button on:click={() => cantidad++}>+</button>
             <span>unidades</span>
@@ -156,7 +167,6 @@
         font-size: 20px;
         padding: 10px;
         resize: none;
-        /* Desactiva la redimensión */
         background: white;
     }
 
@@ -193,6 +203,7 @@
         justify-content: center;
         align-items: center;
         border: 1px solid black;
+        position: relative;
     }
 
     .custom-label {
@@ -201,17 +212,25 @@
         align-items: center;
         width: 100px;
         height: 100px;
-        background-color: #f0f0f0;
+        background-color: #f0f0f032;
         border: 2px dashed #ccc;
         border-radius: 50%;
         font-size: 24px;
         font-weight: bold;
         color: #666;
         cursor: pointer;
+        position: absolute;
     }
 
     .addproduct-img input {
         display: none;
+    }
+
+    .selected-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
     }
 
     .product-info {
@@ -258,6 +277,12 @@
         gap: 5px;
     }
 
+    .product-price {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
     .btn-minus,
     .btn-plus {
         background-color: #d9dde1;
@@ -281,51 +306,7 @@
         align-items: center;
         justify-content: center;
         font-size: 16px;
-        border: 1px solid #ccc;
-        padding: 8px;
         border-radius: 5px;
-    }
-
-    /* Ocultar las flechas de incremento/decremento en navegadores modernos */
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    input[type="number"] {
-        -moz-appearance: textfield; /* Para Firefox */
-    }
-
-    .text-unidades {
-        font-size: 14px;
-    }
-
-    .product-price {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-
-    .price-input {
-        width: 60px;
-        text-align: right;
-        font-size: 16px;
         border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .product-btn {
-        width: 100%;
-        height: 15%;
-        border: 1px solid black;
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 </style>
