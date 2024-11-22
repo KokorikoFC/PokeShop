@@ -110,7 +110,6 @@
 
     .title_perfil {
         width: 100%;
-        height: 8%;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -128,11 +127,12 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 10px;
+        border: 1px solid black;
     }
 
     .icono {
-        height: 50px;
-        width: 50px;
+        height: 40px;
+        width: 40px;
         border: 1px solid black;
         border-radius: 50%;
         overflow: hidden;
@@ -161,4 +161,15 @@
     .addProduct:hover {
         cursor: pointer;
     }
+
+    .products {
+        width: 100%;
+        border: 1px solid black;
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 54px;
+    }
+
 </style>

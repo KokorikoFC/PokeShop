@@ -17,7 +17,7 @@
     }
 </script>
 
-<div class="products" id="products">
+
     {#each productosData as product (product.id)}
         <div class="product">
             <figure class="product-img">
@@ -74,18 +74,9 @@
             </div>
         </div>
     {/each}
-</div>
+
 
 <style>
-    .products {
-        width: 100%;
-        border: 1px solid black;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        gap: 30px;
-    }
 
     .product {
         border: 1px solid black;
