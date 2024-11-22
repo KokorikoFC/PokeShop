@@ -93,7 +93,6 @@
 
     .content {
         width: 85%;
-        height: 100%;
         margin-left: 15%; /* Espacio para el header fijo */
         background-color: #f3f3f3;
         display: flex;

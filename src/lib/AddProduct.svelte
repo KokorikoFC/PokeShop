@@ -5,52 +5,99 @@
     let descripcion = "";
     let cantidad = 0;
     let precio = 0;
+    let imageFile = null; // Archivo de imagen seleccionado
+
+    // Configuración de Cloudinary
+    const cloudinaryUrl = "https://api.cloudinary.com/v1_1/djtukekvp/image/upload";
+    const uploadPreset = "ml_default";
+
+    // Función para subir la imagen a Cloudinary
+    const subirImagen = async () => {
+        if (!imageFile) {
+            alert("Selecciona una imagen antes de añadir el producto.");
+            return null;
+        }
+
+        const formData = new FormData();
+        formData.append("file", imageFile);
+        formData.append("upload_preset", uploadPreset);
+
+        try {
+            const response = await fetch(cloudinaryUrl, {
+                method: "POST",
+                body: formData,
+            });
+
+            const data = await response.json();
+
+            if (data.secure_url) {
+                return data.secure_url; // Retorna la URL segura de la imagen subida
+            } else {
+                alert("Error al subir la imagen.");
+                return null;
+            }
+        } catch (error) {
+            console.error("Error al subir la imagen a Cloudinary:", error);
+            alert("Error al subir la imagen.");
+            return null;
+        }
+    };
 
     // Función para limpiar el nombre del producto
     const limpiarNombre = (nombre) =>
         nombre
             .toLowerCase()
-            .replace(/[^a-z0-9]/gi, '') // Eliminar caracteres especiales
-            .replace(/\s+/g, ''); // Eliminar espacios
+            .replace(/[^a-z0-9]/gi, "") // Eliminar caracteres especiales
+            .replace(/\s+/g, ""); // Eliminar espacios
 
-    // Función para añadir un producto
-    const addProduct = () => {
-        if (nombre && descripcion && precio > 0 && cantidad > 0) {
-            const nombreLimpio = limpiarNombre(nombre);
+            const addProduct = async () => {
+    const urlImagen = await subirImagen();
 
-            const nuevoProducto = {
-                id: Date.now(),
-                nombre,
-                descripcion,
-                precio,
-                unidades: cantidad,
-                valoracion: parseFloat((Math.random() * 4.5 + 0.5).toFixed(1)), // Valoración entre 0.5 y 5
-                urlImagen: `/src/img/${nombreLimpio}.jpg`
-            };
+    if (urlImagen && nombre && descripcion && precio > 0 && cantidad > 0) {
+        const nombreLimpio = limpiarNombre(nombre);
 
-            // Actualiza el store con el nuevo producto
-            productos.addProducto(nuevoProducto);
+        const nuevoProducto = {
+            id: Date.now(),
+            nombre,
+            descripcion,
+            precio,
+            unidades: cantidad,
+            valoracion: parseFloat((Math.random() * 4.5 + 0.5).toFixed(1)), // Valoración entre 0.5 y 5
+            urlImagen // Usamos la URL devuelta por Cloudinary
+        };
 
-            // Limpia los campos del formulario
-            nombre = "";
-            descripcion = "";
-            cantidad = 0;
-            precio = 0;
+        // Actualiza el store con el nuevo producto
+        productos.addProducto(nuevoProducto);
 
-            alert("Producto añadido!");
-        } else {
-            alert("Por favor, rellena todos los campos correctamente.");
-        }
-    };
+        // Limpia los campos del formulario
+        nombre = "";
+        descripcion = "";
+        cantidad = 0;
+        precio = 0;
+
+        alert("Producto añadido!");
+        console.log("Nuevo producto añadido:", nuevoProducto);
+
+    } else {
+        alert("Por favor, rellena todos los campos correctamente.");
+    }
+};
+
 </script>
 
 
 <div class="addProduct-container">
     <div class="addproduct-img-info">
         <div class="addproduct-img">
-            <input type="file" id="fileInput" />
+            <input 
+                type="file" 
+                id="fileInput" 
+                accept="image/*"
+                on:change={(event) => imageFile = event.target.files[0]}
+            />
             <label for="fileInput" class="custom-label">+</label>
         </div>
+        
         <div class="product-info">
             <input 
                 class="input-nombre"
