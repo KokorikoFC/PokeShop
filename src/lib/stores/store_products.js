@@ -1,11 +1,11 @@
 import { writable, derived } from 'svelte/store';
 
-// Crea un store para productos
+// Crear un store para productos
 export const productosStore = (() => {
-    console.log("crearStoreProductos")
+    console.log("crearStoreProductos");
     const { subscribe, set, update } = writable([]);
 
-    // Productos de prueba que se añadirán al inicializar el store
+    // Productos iniciales que se añadirán al store al inicializarlo
     const productosIniciales = [
         {
             id: 1,
@@ -14,16 +14,16 @@ export const productosStore = (() => {
             precio: 64.99,
             unidades: 10,
             valoracion: 4,
-            urlImagen: "Cynthia&GarchompPokémonTrainersFigure.jpg"
+            urlImagen: "src/img/Cynthia&GarchompPokémonTrainersFigure.jpg"
         },
         {
             id: 2,
             nombre: "Pokémon Giant Pins: Arcanine Oversize Pin",
-            descripcion: "Arcanine es un Pokémon enorme, ¡y este pin extragrande tiene el tamaño perfecto para capturar toda esa magnificencia! El Pokémon legendario está aquí como un pin gigante que lo convierte en un accesorio llamativo y una incorporación que llama la atención a cualquier colección.",
+            descripcion: "Arcanine es un Pokémon enorme, ¡y este pin extragrande tiene el tamaño perfecto para capturar toda esa magnificencia!",
             precio: 19.99,
             unidades: 15,
             valoracion: 5,
-            urlImagen: "PokémonGiantPinsArcanineOversizePin.jpg"
+            urlImagen: "src/img/PokémonGiantPinsArcanineOversizePin.jpg"
         },
         {
             id: 3,
@@ -32,7 +32,7 @@ export const productosStore = (() => {
             precio: 14.99,
             unidades: 30,
             valoracion: 4,
-            urlImagen: "/PokeBall.jpg"
+            urlImagen: "src/img/PokeBall.jpg"
         }
     ];
 
@@ -41,29 +41,43 @@ export const productosStore = (() => {
 
     return {
         subscribe,
-        addProducto: (p) => update(productos => {
+        // Función para añadir un producto al store
+        addProducto: (producto) => update(productos => {
+            // Función para limpiar el nombre y generar la URL de la imagen
+            const limpiarNombre = (nombre) =>
+                nombre.toLowerCase()
+                    .replace(/[^a-z0-9]/gi, '') // Eliminar caracteres especiales
+                    .replace(/\s+/g, ''); // Eliminar espacios
+
+            const nombreLimpio = limpiarNombre(producto.nombre);
+
             const nuevoProducto = {
                 id: Date.now(),
-                nombre: p.nombre,
-                descripcion: p.descripcion,
-                precio: p.precio,
-                unidades: p.unidades,
-                valoracion: p.valoracion,
-                urlImagen: p.urlImagen
+                nombre: producto.nombre,
+                descripcion: producto.descripcion,
+                precio: producto.precio,
+                unidades: producto.unidades,
+                valoracion: (Math.random() * 4.5 + 0.5).toFixed(1), // Valoración aleatoria entre 0.5 y 5
+                urlImagen: `src/img/${nombreLimpio}.jpg`
             };
+
             return [...productos, nuevoProducto];
         }),
+
+        // Función para eliminar un producto del store por ID
         removeProducto: (id) => update(productos =>
             productos.filter(producto => producto.id !== id)
         ),
-        reset: () => set([]) // Resetea el store
+
+        // Función para resetear el store a un array vacío
+        reset: () => set([])
     };
 })();
 
-// Usar el store para productos
+// Exportar el store para su uso en la aplicación
 export const productos = productosStore;
 
-// Crear un derived store para contar los productos
+// Crear un store derivado para contar el número de productos
 export const numeroProductos = derived(productos, ($productos) =>
     $productos.length
 );

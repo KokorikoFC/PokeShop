@@ -23,7 +23,7 @@
             <figure class="product-img">
                 <img
                     id="imgProduct"
-                    src="src/img/{product.urlImagen}"
+                    src={product.urlImagen}
                     alt={product.nombre}
                 />
             </figure>

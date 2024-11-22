@@ -1,7 +1,8 @@
 <script>
     import { productos } from "../lib/stores/store_products.js"; // Importa el store de productos
     import { onMount } from "svelte"; // Para ejecutar código al montar el componente
-    import Productos from '../lib/Product.svelte';
+    import Productos from "../lib/Product.svelte";
+    import AddProduct from "../lib/AddProduct.svelte";
 
     let productosData = [];
 
@@ -10,22 +11,10 @@
         productosData = $productos;
     }
 
-        // Genera las estrellas de la valoración
-        function generateStars(rating) {
-        let stars = [];
-        for (let i = 1; i <= 5; i++) {
-            if (rating >= i) {
-                // Estrella completa
-                stars.push('full');
-            } else if (rating >= i - 0.5) {
-                // Media estrella
-                stars.push('half');
-            } else {
-                // Estrella vacía
-                stars.push('empty');
-            }
-        }
-        return stars;
+    let showAddProduct = false; // Controla si se muestra el formulario
+
+    function toggleAddProduct() {
+        showAddProduct = !showAddProduct; // Alterna la visibilidad
     }
 </script>
 
@@ -50,13 +39,17 @@
                 <p>Antonio Perez</p>
             </div>
         </div>
-        <div class="addProduct" id="addProduct">
+        <div class="addProduct" id="addProduct" on:click={toggleAddProduct}>
             <p>Añadir</p>
         </div>
 
         <div class="products" id="products">
             <Productos {productosData} />
         </div>
+
+        {#if showAddProduct}
+            <AddProduct />
+        {/if}
     </div>
 </main>
 
@@ -86,6 +79,16 @@
         border: 1px solid black;
         background-color: white;
         z-index: 10; /* Asegura que el header esté encima del content */
+    }
+
+    .addProduct {
+        transition:
+            background-color 0.3s ease,
+            transform 0.2s ease;
+    }
+    .addProduct:hover {
+        background-color: #e0e0e0;
+        transform: scale(1.05);
     }
 
     .content {
@@ -159,6 +162,4 @@
     .addProduct:hover {
         cursor: pointer;
     }
-
-
 </style>
