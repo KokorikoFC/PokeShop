@@ -6,14 +6,16 @@
     main {
         height: 200vh;
         background-color: beige;
+        padding: 2%;
     }
     @media (min-width: 992px) {
         main {
             background-color: rgb(255, 255, 255);
-            margin-left: 13%;
-            height: 90vh;
+            margin-left: 16%;
+            height: 95vh;
             overflow-y: scroll;
-            border-radius: 30px;
+            border-radius: 35px;
+
         }
         .graficas {
             height: 200vh;
