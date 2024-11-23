@@ -83,8 +83,8 @@
         </div>
 
         <ul class="col-5 col-lg-12">
-            <li>Informe</li>
-            <li>Inventario</li>
+            <li><a href="/informes">Informe</a></li>
+            <li><a href="/inventario">Inventario</a></li>
         </ul>
 
         <div class="footerCont col-4 col-lg-12">
