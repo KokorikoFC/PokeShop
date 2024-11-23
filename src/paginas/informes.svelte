@@ -19,9 +19,9 @@
         }
         .graficas {
             height: 200vh;
-            width: 80vw;
-            background-color: rgb(255, 255, 255);
+            width: 100%;
             margin: 0 auto;
+            border: 2px solid black;
         }
         
         main::-webkit-scrollbar {
@@ -39,6 +39,7 @@
 
 <main class={cols}>
     <h1>Informe de Ventas</h1>
-    <p>Aquí puedes mostrar un informe detallado...</p>
-    <div class="graficas"></div>
+    <div class="graficas">
+        <p>Aquí van las gráficas</p>
+    </div>
 </main>

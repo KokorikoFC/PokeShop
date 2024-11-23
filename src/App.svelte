@@ -25,18 +25,20 @@
 
 <main class="row d-flex align-items-center">
     <Sidebar cols="col-lg-2 col-sm-12 order-2 order-lg-1" />
-    
+
     <div
         class="mainContent row d-flex align-items-center justify-content-center"
     >
-    <Router>
-      <Route path="/informes">
-        <Informes cols="col-lg-10 col-sm-12 order-1 order-lg-2" />
-    </Route>
-    <Route path="/inventario">
-        <Productos/>
-    </Route>
-  </Router>
-
+        <Router>
+            <Route path="/">
+                <Informes cols="col-lg-10 col-sm-12 order-1 order-lg-2" />
+            </Route>
+            <Route path="/informes">
+                <Informes cols="col-lg-10 col-sm-12 order-1 order-lg-2" />
+            </Route>
+            <Route path="/inventario">
+                <Productos />
+            </Route>
+        </Router>
     </div>
 </main>
