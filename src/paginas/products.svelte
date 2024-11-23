@@ -1,21 +1,30 @@
+<!--Página de productos-->
+
 <script>
-    import { productos } from "../lib/stores/store_products.js"; // Importa el store de productos
-    import { onMount } from "svelte"; // Para ejecutar código al montar el componente
+    import { productos } from "../lib/stores/store_products.js";
     import Productos from "../lib/Product.svelte";
     import AddProduct from "../lib/AddProduct.svelte";
+    import ProductPopUp from "../lib/ProductPopUp.svelte";
 
     let productosData = [];
+    let showAddProduct = false; // Controla si se muestra el formulario
+    let selectedProduct = null; // Producto seleccionado
 
     // Se suscribe al store para obtener los productos
-    $: {
-        productosData = $productos;
-    }
+    $: productosData = $productos;
 
-    let showAddProduct = false; // Controla si se muestra el formulario
 
     function toggleAddProduct() {
         showAddProduct = !showAddProduct; // Alterna la visibilidad
     }
+
+    function handleProductClick(event) {
+    console.log("Producto seleccionado:", event.detail); // Verifica el producto
+    selectedProduct = event.detail; // Extrae el producto del evento
+}
+
+
+
 </script>
 
 <main id="main">
@@ -44,14 +53,21 @@
         </div>
 
         <div class="products" id="products">
-            <Productos {productosData} />
+            <!-- Captura el evento clickProduct -->
+            <Productos {productosData} on:clickProduct={handleProductClick} />
         </div>
 
         {#if showAddProduct}
             <AddProduct />
         {/if}
+
+        {#if selectedProduct}
+            <!-- Popup con el producto seleccionado -->
+            <ProductPopUp {selectedProduct}/>
+        {/if}
     </div>
 </main>
+
 
 <style>
     * {
@@ -171,5 +187,4 @@
         flex-wrap: wrap;
         gap: 54px;
     }
-
 </style>
