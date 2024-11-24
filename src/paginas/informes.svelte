@@ -1,12 +1,16 @@
 <script>
-    export let cols = "string";
+    export let cols = "";
 </script>
 
 <style>
     main {
         height: 200vh;
         background-color: beige;
-        padding: 2%;
+        padding: 3%;
+    }
+    .graficas {
+        width: 100%;
+        border: 2px solid black;
     }
     @media (min-width: 992px) {
         main {
@@ -19,7 +23,7 @@
         }
         .graficas {
             height: 200vh;
-            width: 100%;
+            background-color: rgb(255, 255, 255);
             margin: 0 auto;
             border: 2px solid black;
         }

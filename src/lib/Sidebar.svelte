@@ -11,6 +11,7 @@
         bottom: 0;
         padding: 20px;
         background-color: #fde379;
+        z-index: 3;
     }
     nav hr {
         width: 100%;
@@ -49,6 +50,7 @@
         align-items: center;
         justify-content: space-around;
         width: 100%;
+        height: 100%;
     }
     .footerMediaCont svg {
         width: 30%;
@@ -99,6 +101,7 @@
         font-weight: bold;
         display: block;
     }
+
         ul {
             height: 60%;
             flex-direction: column;
