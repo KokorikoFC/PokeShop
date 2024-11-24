@@ -25,12 +25,24 @@
 </script>
 
 <style>
-    main {
+    main{
         height: 200vh;
         background-color: beige;
         padding: 3%;
+        overflow: hidden;
+        position: relative;
     }
 
+    .overlay{
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.356);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        display: none;
+    }
     .addProduct {
         transition:
             background-color 0.3s ease,
@@ -47,6 +59,7 @@
         align-items: flex-start;
         flex-wrap: wrap;
         gap: 20px;
+        overflow: hidden;
     }
     .logo {
         width: 100%;
@@ -122,7 +135,9 @@
 </style>
 
 <main id="main" class={cols}>
+    <div class="overlay"></div>
     <div class="content">
+        
         <div class="title_perfil">
             <div class="title">
                 <h1>Productos</h1>

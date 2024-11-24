@@ -28,19 +28,19 @@
     .headerLogoCont {
         text-align: center;
     }
-    .logoNameCont{
+    .logoNameCont {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 10px;
     }
-    .logoNameCont svg{
+    .logoNameCont svg {
         height: 50px;
     }
     .logoNameCont h2 {
         display: none;
     }
-    .footerCont{
+    .footerCont {
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -63,10 +63,18 @@
         list-style: none;
         margin-bottom: 0;
     }
+
     a {
         text-decoration: none;
         color: #724a18;
         font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    a:hover {
+        background-color: rgb(245, 95, 95);
+        color: rgb(255, 255, 255);
     }
     .footerMediaCont svg {
         height: 40px;
@@ -78,7 +86,7 @@
         align-items: end;
         font-size: 12px;
     }
-/*
+    /*
     .headerLogoCont,
     .footerCont,
     .copy,
@@ -97,10 +105,10 @@
             height: 20%;
         }
         .logoNameCont h2 {
-        font-size: 26px;
-        font-weight: bold;
-        display: block;
-    }
+            font-size: 26px;
+            font-weight: bold;
+            display: block;
+        }
 
         ul {
             height: 60%;
@@ -109,18 +117,15 @@
             font-size: 24px;
             gap: 80px;
         }
-        li {
+        a {
             background-color: #724a18;
-            width: 95%;
+            width: 85%;
             padding: 5px;
             text-align: center;
             border-radius: 50%;
+            color: rgb(255, 255, 255);
+            font-size: 22px;
         }
-        a {
-        color: rgb(255, 255, 255);
-        font-size: 22px;
-    }
-
     }
 </style>
 
@@ -164,8 +169,8 @@
         </div>
 
         <ul class="col-7 col-lg-12">
-            <li><a href="/informes">Informe</a></li>
-            <li><a href="/inventario">Inventario</a></li>
+            <a href="/informes"><li>Informe</li></a>
+            <a href="/inventario"><li>Inventario</li></a>
         </ul>
 
         <div class="footerCont col-3 col-lg-12">

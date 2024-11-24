@@ -10,9 +10,10 @@
 
     const dispatch = createEventDispatcher();
 
+    
     // Función que se encargará de manejar el pedido
     const handlePedido = () => {
-        if (cantidad > 0 && cantidad <= unidadesDisponibles) {
+        if (cantidad > 0 ) {
             // Actualiza el stock del producto
             productosStore.updateUnidades(productoSeleccionado.id, cantidad);
 
