@@ -18,7 +18,8 @@
     };
 
     // Configuración de Cloudinary
-    const cloudinaryUrl = "https://api.cloudinary.com/v1_1/djtukekvp/image/upload";
+    const cloudinaryUrl =
+        "https://api.cloudinary.com/v1_1/djtukekvp/image/upload";
     const uploadPreset = "ml_default";
 
     // Función para subir la imagen a Cloudinary
@@ -73,7 +74,7 @@
                 precio,
                 unidades: cantidad,
                 valoracion: parseFloat((Math.random() * 4.5 + 0.5).toFixed(1)), // Valoración entre 0.5 y 5
-                urlImagen // Usamos la URL devuelta por Cloudinary
+                urlImagen, // Usamos la URL devuelta por Cloudinary
             };
 
             // Actualiza el store con el nuevo producto
@@ -88,72 +89,13 @@
 
             alert("Producto añadido!");
             console.log("Nuevo producto añadido:", nuevoProducto);
-
         } else {
             alert("Por favor, rellena todos los campos correctamente.");
         }
     };
 </script>
 
-<div class="addProduct-container">
-    <div class="addproduct-img-info">
-        <div class="addproduct-img">
-            <input 
-                type="file" 
-                id="fileInput" 
-                accept="image/*"
-                on:change={handleFileChange} 
-            />
-            <label for="fileInput" class="custom-label">+</label>
-            <!-- Mostrar la imagen seleccionada -->
-            {#if imageUrl}
-                <img src={imageUrl} alt="Imagen del producto" class="selected-image" />
-            {/if}
-        </div>
-        
-        <div class="product-info">
-            <input 
-                class="input-nombre"
-                type="text"
-                name="nombre"
-                placeholder="Nombre del producto"
-                bind:value={nombre}
-            />
-            <textarea
-                class="input-descripcion"
-                name="descripcion"
-                placeholder="Descripción del producto"
-                bind:value={descripcion}
-            ></textarea>
-        </div>
-    </div>
-    <div class="product-unidades-price">
-        <div class="product-unidades">
-            <button on:click={() => (cantidad = Math.max(0, cantidad - 1))}>-</button>
-            <input type="number" bind:value={cantidad} min="0" />
-            <button on:click={() => cantidad++}>+</button>
-            <span>unidades</span>
-        </div>
-        <div class="product-price">
-            <input
-                type="number"
-                bind:value={precio}
-                min="0"
-                step="0.01"
-                placeholder="Precio"
-            /> €
-        </div>
-    </div>
-    <button on:click={addProduct}>Añadir producto</button>
-</div>
-
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
     input {
         width: 100%;
         font-size: 20px;
@@ -171,29 +113,28 @@
     }
 
     .addProduct-container {
-        border: 1px solid black;
-        width: 800px;
+        max-width: 800px;
         height: 500px;
-        position: absolute;
+        position: fixed;
         top: 50%;
-        left: 58%;
+        left: 50%;
         transform: translate(-50%, -50%);
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        flex-wrap: wrap;
-        padding: 20px;
-        background-color: white;
+        flex-direction: column;
+        padding: 40px;
+        background-color: #edaf52;
+        border-radius: 20px;
+        z-index: 2;
     }
 
     .addproduct-img-info {
         width: 100%;
         height: 60%;
-        border: 1px solid black;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        flex-wrap: wrap;
     }
 
     .addproduct-img {
@@ -202,8 +143,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 1px solid black;
         position: relative;
+        background-color: white;
+        border-radius: 10px;
+        border: 4px solid #fde379;
     }
 
     .custom-label {
@@ -212,7 +155,7 @@
         align-items: center;
         width: 100px;
         height: 100px;
-        background-color: #f0f0f032;
+        background-color: white;
         border: 2px dashed #ccc;
         border-radius: 50%;
         font-size: 24px;
@@ -237,52 +180,87 @@
         width: 60%;
         height: 100%;
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-items: center;
-        flex-wrap: wrap;
-        border: 1px solid black;
+        flex-direction: column;
     }
 
     .input-nombre {
-        background-color: antiquewhite;
+        background-color: white;
         width: 100%;
         height: 20%;
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        border-radius: 10px;
+        border: 4px solid #fde379;
     }
 
     .input-descripcion {
-        background-color: rgb(255, 210, 150);
+        background-color: white;
         width: 100%;
-        height: 80%;
+        height: 70%;
+        border: none;
+        border-radius: 10px;
+        border: 4px solid #fde379;
     }
 
     .product-unidades-price {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
         width: 100%;
         height: 15%;
-        padding: 10px;
-        background-color: #d9dde1;
         border-radius: 5px;
         font-family: Arial, sans-serif;
-        padding: 10px;
+        font-size: 22px;
+        padding: 0 25px;
     }
 
     .product-unidades {
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 10px;
+        height: 100%;
+    }
+    .product-unidades input {
+        height: 70%;
+        width: 30%;
+        border: none;
+        border-radius: 10px;
+        border: 4px solid #fde379;
+        text-align: center;
+    }
+    .product-unidades button {
+        padding: 0;
+        font-size: 30px;
+        aspect-ratio: 1;
+        height: 60%;
+        border: none;
+        border-radius: 50%;
+        background-color: #fde379;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
     }
 
     .product-price {
         display: flex;
         align-items: center;
-        gap: 5px;
+        justify-content: end;
+        gap: 10px;
+        height: 100%;
     }
-
+    .product-price input {
+        height: 70%;
+        width: 50%;
+        border: none;
+        border-radius: 10px;
+        border: 4px solid #fde379;
+        text-align: center;
+    }
     .btn-minus,
     .btn-plus {
         background-color: #d9dde1;
@@ -309,4 +287,118 @@
         border-radius: 5px;
         border: 1px solid #ccc;
     }
+    .addBtn {
+        width: 100%;
+        height: 12%;
+        background-color: #887464;
+        color: white;
+        font-size: 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    @media (max-width: 991.98px) {
+        .addProduct-container {
+            left: 50%;
+            top: 45%;
+            height: 80vh;
+            width: 95%;
+        }
+        .addproduct-img-info {
+            flex-direction: column;
+            gap: 20px;
+        }
+        .addproduct-img {
+            width: 100%;
+            height: 50%;
+        }
+        .product-info {
+            height: 50%;
+            width: 100%;
+            gap: 15px;
+        }
+        .input-nombre {
+            height: 25%;
+        }
+        .product-unidades-price {
+            flex-direction: column;
+            height: 20%;
+            gap: 10px;
+        }
+        .product-unidades input,
+        .product-price input {
+            height: 90%;
+            width: 60%;
+        }
+        .product-price input {
+            margin-left: 45px;
+        }
+        .product-unidades,
+        .product-price {
+            width: 100%;
+            justify-content: start;
+            align-items: center;
+        }
+        .addBtn {
+            height: 10%;
+        }
+    }
 </style>
+
+<div class="addProduct-container">
+    <div class="addproduct-img-info">
+        <div class="addproduct-img">
+            <input
+                type="file"
+                id="fileInput"
+                accept="image/*"
+                on:change={handleFileChange}
+            />
+            <label for="fileInput" class="custom-label">+</label>
+            <!-- Mostrar la imagen seleccionada -->
+            {#if imageUrl}
+                <img
+                    src={imageUrl}
+                    alt="Imagen del producto"
+                    class="selected-image"
+                />
+            {/if}
+        </div>
+
+        <div class="product-info">
+            <input
+                class="input-nombre"
+                type="text"
+                name="nombre"
+                placeholder="Nombre del producto"
+                bind:value={nombre}
+            />
+            <textarea
+                class="input-descripcion"
+                name="descripcion"
+                placeholder="Descripción del producto"
+                bind:value={descripcion}
+            ></textarea>
+        </div>
+    </div>
+    <div class="product-unidades-price">
+        <div class="product-unidades">
+            <button on:click={() => (cantidad = Math.max(0, cantidad - 1))}
+                >-</button
+            >
+            <input type="number" bind:value={cantidad} min="0" />
+            <button on:click={() => cantidad++}>+</button>
+            <span>unidades</span>
+        </div>
+        <div class="product-price">
+            <input
+                type="number"
+                bind:value={precio}
+                min="0"
+                step="0.01"
+                placeholder="Precio"
+            /> €
+        </div>
+    </div>
+    <button class="addBtn" on:click={addProduct}>Añadir producto</button>
+</div>
