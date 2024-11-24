@@ -5,6 +5,7 @@
     import Productos from "../lib/Product.svelte";
     import AddProduct from "../lib/AddProduct.svelte";
     import ProductPopUp from "../lib/ProductPopUp.svelte";
+    export let cols = "";
 
     let productosData = [];
     let showAddProduct = false; // Controla si se muestra el formulario
@@ -27,14 +28,7 @@
 
 </script>
 
-<main id="main">
-    <header>
-        <div class="logo"></div>
-        <div class="menu">
-            <p>Productos</p>
-            <p>Informes</p>
-        </div>
-    </header>
+<main id="main" class={cols}>
 
     <div class="content">
         <div class="title_perfil">
@@ -70,32 +64,12 @@
 
 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+       main {
+        height: 200vh;
+        background-color: beige;
+        padding: 2%;
     }
 
-    main {
-        display: flex;
-        width: 100%;
-        height: 100vh;
-    }
-
-    header {
-        width: 15%;
-        height: 100%;
-        position: fixed; /* Fija el header */
-        left: 0; /* Lo posiciona en el lado izquierdo */
-        top: 0; /* Se asegura de que comience desde arriba */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        border: 1px solid black;
-        background-color: white;
-        z-index: 10; /* Asegura que el header esté encima del content */
-    }
 
     .addProduct {
         transition:
@@ -108,14 +82,11 @@
     }
 
     .content {
-        width: 85%;
-        margin-left: 15%; /* Espacio para el header fijo */
         background-color: #f3f3f3;
         display: flex;
         justify-content: left;
         align-items: flex-start;
         flex-wrap: wrap;
-        padding: 30px;
         gap: 20px;
     }
 
@@ -186,5 +157,14 @@
         align-items: flex-start;
         flex-wrap: wrap;
         gap: 54px;
+    }
+    @media (min-width: 992px) {
+        main {
+            background-color: rgb(255, 255, 255);
+            margin-left: 16%;
+            height: 95vh;
+            overflow-y: scroll;
+            border-radius: 35px;
+        }
     }
 </style>

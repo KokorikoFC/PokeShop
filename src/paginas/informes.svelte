@@ -1,5 +1,5 @@
 <script>
-    export let cols = "string";
+    export let cols = "";
 </script>
 
 <style>
