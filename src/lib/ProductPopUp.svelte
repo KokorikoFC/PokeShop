@@ -3,6 +3,11 @@
 <script>
     export let selectedProduct; // Declara selectedProduct como prop
     console.log("Producto seleccionado para el pop up:", selectedProduct); // Verifica el producto
+    import AddQuantity from "./AddQuantity.svelte";
+    let activeComponent = ""; // Controla qué componente se muestra
+    const openAddQuantity = () => {
+        activeComponent = "addQuantity"; 
+    };
 </script>
 
 <style>
@@ -182,8 +187,11 @@
         </div>
     </div>
     <div class="btnCont">
-        <button>Pedir unidades</button>
+        <button on:click={openAddQuantity}>Pedir unidades</button>
         <button>Eliminar producto</button>
         <button>Editar producto</button>
     </div>
+    {#if activeComponent === "addQuantity"}
+        <AddQuantity nombre={selectedProduct.nombre} unidadesDisponibles={selectedProduct.unidades}/>
+    {/if}
 </div>
