@@ -81,7 +81,7 @@
 {/each}
 
 <style>
-    p{
+       p{
         margin-bottom: 0;
     }
     .product {

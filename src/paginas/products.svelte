@@ -4,6 +4,7 @@
     import { productos } from "../lib/stores/store_products.js";
     import Productos from "../lib/Product.svelte";
     import AddProduct from "../lib/AddProduct.svelte";
+    import ProductPopUp from "../lib/ProductPopUp.svelte";
     export let cols = "";
 
     let productosData = [];
@@ -27,23 +28,48 @@
 
 </script>
 
+<main id="main" class={cols}>
+
+    <div class="content">
+        <div class="title_perfil">
+            <div class="title">
+                <h1>Productos</h1>
+            </div>
+            <div class="perfil">
+                <figure class="icono">
+                    <img src="src/img/foto.jpg" alt="perfil" />
+                </figure>
+                <p>Antonio Perez</p>
+            </div>
+        </div>
+        <div class="addProduct" id="addProduct" on:click={toggleAddProduct}>
+            <p>Añadir</p>
+        </div>
+
+        <div class="products" id="products">
+            <!-- Captura el evento clickProduct -->
+            <Productos {productosData} on:clickProduct={handleProductClick} />
+        </div>
+
+        {#if showAddProduct}
+            <AddProduct />
+        {/if}
+
+        {#if selectedProduct}
+            <!-- Popup con el producto seleccionado -->
+            <ProductPopUp {selectedProduct}/>
+        {/if}
+    </div>
+</main>
+
+
 <style>
-    main {
+       main {
         height: 200vh;
         background-color: beige;
-        padding: 3%;
-        position: relative;
+        padding: 2%;
     }
-    .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 1;
-        display: none;
-    }
+
 
     .addProduct {
         transition:
@@ -55,7 +81,6 @@
         transform: scale(1.05);
     }
     .content {
-        width: 100%;
         background-color: #f3f3f3;
         display: flex;
         justify-content: left;
@@ -122,7 +147,6 @@
         flex-wrap: wrap;
         gap: 54px;
     }
-
     @media (min-width: 992px) {
         main {
             background-color: rgb(255, 255, 255);
@@ -130,21 +154,6 @@
             height: 95vh;
             overflow-y: scroll;
             border-radius: 35px;
-        }
-        main::-webkit-scrollbar {
-            width: 0px;
-            height: 0px;
-        }
-        main::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        main::-webkit-scrollbar-thumb {
-            background: transparent;
-        }
-        .content {
-        }
-        .addProduct {
-            width: 200px;
         }
     }
 </style>
