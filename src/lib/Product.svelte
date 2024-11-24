@@ -81,7 +81,9 @@
 {/each}
 
 <style>
-
+    p{
+        margin-bottom: 0;
+    }
     .product {
         width: 20%;
         min-width: 240px;

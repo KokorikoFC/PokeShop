@@ -27,41 +27,6 @@
 
 </script>
 
-<main id="main">
-    <header>
-        <div class="logo"></div>
-        <div class="menu">
-            <p>Productos</p>
-            <p>Informes</p>
-        </div>
-    </header>
-
-    <div class="content">
-        <div class="title_perfil">
-            <div class="title">
-                <h1>Productos</h1>
-            </div>
-            <div class="perfil">
-                <figure class="icono">
-                    <img src="src/img/foto.jpg" alt="perfil" />
-                </figure>
-                <p>Antonio Perez</p>
-            </div>
-        </div>
-        <div class="addProduct" id="addProduct" on:click={toggleAddProduct}>
-            <p>Añadir</p>
-        </div>
-
-        <div class="products" id="products">
-            <Productos {productosData} />
-        </div>
-
-        {#if showAddProduct}
-            <AddProduct />
-        {/if}
-    </div>
-</main>
-
 <style>
     main {
         height: 200vh;
@@ -158,6 +123,30 @@
         gap: 54px;
     }
 
+    @media (min-width: 992px) {
+        main {
+            background-color: rgb(255, 255, 255);
+            margin-left: 16%;
+            height: 95vh;
+            overflow-y: scroll;
+            border-radius: 35px;
+        }
+        main::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+        }
+        main::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        main::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+        .content {
+        }
+        .addProduct {
+            width: 200px;
+        }
+    }
 </style>
 
 <main id="main" class={cols}>
