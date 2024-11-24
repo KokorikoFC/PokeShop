@@ -3,6 +3,7 @@
     import { onMount } from "svelte"; // Para ejecutar código al montar el componente
     import Productos from "../lib/Product.svelte";
     import AddProduct from "../lib/AddProduct.svelte";
+    export let cols = "";
 
     let productosData = [];
 
@@ -18,16 +19,131 @@
     }
 </script>
 
-<main id="main">
-    <header>
-        <div class="logo"></div>
-        <div class="menu">
-            <p>Productos</p>
-            <p>Informes</p>
-        </div>
-    </header>
+<style>
+    main {
+        height: 200vh;
+        background-color: beige;
+        padding: 3%;
+        position: relative;
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+        display: none;
+    }
 
+    .addProduct {
+        transition:
+            background-color 0.3s ease,
+            transform 0.2s ease;
+    }
+    .addProduct:hover {
+        background-color: #e0e0e0;
+        transform: scale(1.05);
+    }
+    .content {
+        width: 100%;
+        background-color: #f3f3f3;
+        display: flex;
+        justify-content: left;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .logo {
+        width: 100%;
+        height: 100px;
+    }
+    .title_perfil {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        border: 1px solid black;
+    }
+
+    .perfil {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        border: 1px solid black;
+    }
+    .icono {
+        height: 40px;
+        width: 40px;
+        border: 1px solid black;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .icono img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .perfil p {
+        font-size: 20px;
+    }
+    .addProduct {
+        border: 1px solid black;
+        height: 8%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+    }
+    .addProduct:hover {
+        cursor: pointer;
+    }
+    .products {
+        width: 100%;
+        border: 1px solid black;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 54px;
+    }
+
+    @media (min-width: 992px) {
+        main {
+            background-color: rgb(255, 255, 255);
+            margin-left: 16%;
+            height: 95vh;
+            overflow-y: scroll;
+            border-radius: 35px;
+        }
+        main::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+        }
+        main::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        main::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+        .content {
+        }
+        .addProduct {
+            width: 200px;
+        }
+    }
+</style>
+
+<main id="main" class={cols}>
     <div class="content">
+        <div class="overlay"></div>
         <div class="title_perfil">
             <div class="title">
                 <h1>Productos</h1>
@@ -52,124 +168,3 @@
         {/if}
     </div>
 </main>
-
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    main {
-        display: flex;
-        width: 100%;
-        height: 100vh;
-    }
-
-    header {
-        width: 15%;
-        height: 100%;
-        position: fixed; /* Fija el header */
-        left: 0; /* Lo posiciona en el lado izquierdo */
-        top: 0; /* Se asegura de que comience desde arriba */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        border: 1px solid black;
-        background-color: white;
-        z-index: 10; /* Asegura que el header esté encima del content */
-    }
-
-    .addProduct {
-        transition:
-            background-color 0.3s ease,
-            transform 0.2s ease;
-    }
-    .addProduct:hover {
-        background-color: #e0e0e0;
-        transform: scale(1.05);
-    }
-
-    .content {
-        width: 85%;
-        margin-left: 15%; /* Espacio para el header fijo */
-        background-color: #f3f3f3;
-        display: flex;
-        justify-content: left;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        padding: 30px;
-        gap: 20px;
-    }
-
-    .logo {
-        width: 100%;
-        height: 100px;
-    }
-
-    .title_perfil {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        border: 1px solid black;
-    }
-
-    .title {
-    }
-
-    .perfil {
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 10px;
-        border: 1px solid black;
-    }
-
-    .icono {
-        height: 40px;
-        width: 40px;
-        border: 1px solid black;
-        border-radius: 50%;
-        overflow: hidden;
-    }
-
-    .icono img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .perfil p {
-        font-size: 20px;
-    }
-
-    .addProduct {
-        border: 1px solid black;
-        height: 8%;
-        width: 200px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: white;
-    }
-
-    .addProduct:hover {
-        cursor: pointer;
-    }
-
-    .products {
-        width: 100%;
-        border: 1px solid black;
-        display: flex;
-        justify-content: space-around;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        gap: 54px;
-    }
-
-</style>

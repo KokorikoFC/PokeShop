@@ -34,7 +34,7 @@
         <Informes cols="col-lg-10 col-sm-12 order-1 order-lg-2" />
     </Route>
     <Route path="/inventario">
-        <Productos/>
+        <Productos cols="col-lg-10 col-sm-12 order-1 order-lg-2" />
     </Route>
   </Router>
 

@@ -77,9 +77,10 @@
 
 
 <style>
-
+    p{
+        margin-bottom: 0;
+    }
     .product {
-        border: 1px solid black;
         width: 20%;
         min-width: 240px;
         height: 500px;
@@ -87,9 +88,10 @@
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
-        background-color: white;
-        padding: 10px;
+        background-color: rgb(245, 95, 95);
+        padding: 15px;
         gap: 10px;
+        border-radius: 10px;
     }
 
     .product:hover {
@@ -99,8 +101,10 @@
     .product-img {
         width: 100%;
         height: 60%;
-        border: 1px solid black;
         margin: 0;
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
     }
 
     .product-img img {
@@ -111,23 +115,24 @@
 
     .name {
         width: 100%;
-        height: 15%;
-        border: 1px solid black;
+        height: 20%;
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
         font-size: 18px;
+        background-color: white;
+        border-radius: 10px;
     }
 
     .price {
         width: 100%;
         height: 6%;
-        border: 1px solid black;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 16px;
+        font-size: 18px;
+        font-weight: bold;
     }
 
     .review {
