@@ -247,12 +247,18 @@
             <p>Precio: {selectedProduct.precio}€</p>
         </div>
     </div>
-    <div class="btnCont">
-        <button>Pedir unidades</button>
-        <button>Eliminar producto</button>
-        <button>Editar producto</button>
+    <div class="deleteCont" id="deleteCont">
+        <div class="deleteText">
+            <p>¿Estás seguro de que quieres eliminar este producto?</p>
+        </div>
+        <div class="deleteBtns">
+            <button on:click={eliminarProducto}>Eliminar producto</button>
+            <button id="btnCancelar" on:click={ocultarEliminarProducto}>Cancelar</button>
+        </div>
     </div>
-    {#if activeComponent === "addQuantity"}
-        <AddQuantity nombre={selectedProduct.nombre} unidadesDisponibles={selectedProduct.unidades}/>
-    {/if}
+    <div class="btnCont" id="btnCont">
+        <button class="btnReedirigir">Pedir unidades</button>
+        <button class="btnReedirigir" on:click={mostrarEliminarProducto}>Eliminar producto</button>
+        <button class="btnReedirigir">Editar producto</button>
+    </div>
 </div>
