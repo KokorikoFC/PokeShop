@@ -2,7 +2,8 @@
 
 <script>
     import { createEventDispatcher } from "svelte";
-    import { productosStore } from '../lib/stores/store_products.js';
+    import { productosStore } from "../lib/stores/store_products.js";
+    import AddQuantity from "./AddQuantity.svelte";
 
     export let selectedProduct;
 
@@ -31,12 +32,18 @@
     function cancelar() {
         dispatch("closePopup"); // Cierra el popup al cancelar
     }
+
+
+    let activeComponent = ""; // Controla qué componente se muestra
+    const openAddQuantity = () => {
+        activeComponent = "addQuantity";
+    };
 </script>
 
 <style>
-   p{
-    margin-bottom: 0;
-   }
+    p {
+        margin-bottom: 0;
+    }
     .imgProdcuto {
         width: 100%;
         height: 100%;
@@ -131,13 +138,13 @@
         height: 100%;
         width: 50%;
     }
-    .btnCont{
+    .btnCont {
         display: flex;
         width: 100%;
         height: 10%;
         justify-content: space-between;
     }
-    .btnCont button{
+    .btnCont button {
         width: 30%;
         height: 100%;
         background-color: #887464;
@@ -148,7 +155,7 @@
         cursor: pointer;
     }
 
-    .deleteCont{
+    .deleteCont {
         border: 1px solid black;
         width: 100%;
         display: flex;
@@ -210,7 +217,6 @@
         .product-unidades-price {
             flex-direction: column;
             height: 15%;
-            
         }
         .product-unidades,
         .product-price {
@@ -253,12 +259,24 @@
         </div>
         <div class="deleteBtns">
             <button on:click={eliminarProducto}>Eliminar producto</button>
-            <button id="btnCancelar" on:click={ocultarEliminarProducto}>Cancelar</button>
+            <button id="btnCancelar" on:click={ocultarEliminarProducto}
+                >Cancelar</button
+            >
         </div>
     </div>
     <div class="btnCont" id="btnCont">
-        <button class="btnReedirigir">Pedir unidades</button>
-        <button class="btnReedirigir" on:click={mostrarEliminarProducto}>Eliminar producto</button>
+        <button class="btnReedirigir" on:click={openAddQuantity}
+            >Pedir unidades</button
+        >
+        <button class="btnReedirigir" on:click={mostrarEliminarProducto}
+            >Eliminar producto</button
+        >
         <button class="btnReedirigir">Editar producto</button>
     </div>
+    {#if activeComponent === "addQuantity"}
+        <AddQuantity
+            nombre={selectedProduct.nombre}
+            unidadesDisponibles={selectedProduct.unidades}
+        />
+    {/if}
 </div>
