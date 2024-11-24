@@ -102,7 +102,6 @@
         padding-inline: 10px;
         background: white;
     }
-
     textarea {
         width: 100%;
         height: 100%;
@@ -113,11 +112,11 @@
     }
 
     .addProduct-container {
-        max-width: 800px;
+        min-width: 750px;
         height: 500px;
         position: fixed;
         top: 50%;
-        left: 50%;
+        left: 58%;
         transform: translate(-50%, -50%);
         display: flex;
         justify-content: space-between;

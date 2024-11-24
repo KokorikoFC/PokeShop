@@ -142,7 +142,7 @@
         width: 100%;
         border: 1px solid black;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: flex-start;
         flex-wrap: wrap;
         gap: 54px;
@@ -155,6 +155,9 @@
             overflow-y: scroll;
             border-radius: 35px;
         }
+        .addProduct {
+        width: 150px;
+    }
     }
 </style>
 
