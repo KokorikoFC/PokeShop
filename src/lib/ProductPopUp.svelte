@@ -1,13 +1,36 @@
 <!--ProductPopUP-->
 
 <script>
-    export let selectedProduct; // Declara selectedProduct como prop
-    console.log("Producto seleccionado para el pop up:", selectedProduct); // Verifica el producto
-    import AddQuantity from "./AddQuantity.svelte";
-    let activeComponent = ""; // Controla qué componente se muestra
-    const openAddQuantity = () => {
-        activeComponent = "addQuantity"; 
-    };
+    import { createEventDispatcher } from "svelte";
+    import { productosStore } from '../lib/stores/store_products.js';
+
+    export let selectedProduct;
+
+    const dispatch = createEventDispatcher(); // Para emitir eventos al componente padre
+
+    function mostrarEliminarProducto() {
+        let btnCont = document.getElementById("btnCont");
+        btnCont.style.display = "none";
+        let deleteCont = document.getElementById("deleteCont");
+        deleteCont.style.display = "flex";
+    }
+
+    function ocultarEliminarProducto() {
+        let btnCont = document.getElementById("btnCont");
+        btnCont.style.display = "flex";
+        let deleteCont = document.getElementById("deleteCont");
+        deleteCont.style.display = "none";
+    }
+
+    function eliminarProducto() {
+        console.log("Producto a eliminar:", selectedProduct);
+        productosStore.removeProducto(selectedProduct.id);
+        dispatch("closePopup"); // Notifica al padre que cierre el popup
+    }
+
+    function cancelar() {
+        dispatch("closePopup"); // Cierra el popup al cancelar
+    }
 </script>
 
 <style>
@@ -124,6 +147,44 @@
         border-radius: 8px;
         cursor: pointer;
     }
+
+    .deleteCont{
+        border: 1px solid black;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        display: none;
+    }
+
+    .deleteText {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+    }
+
+    .deleteBtns {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .deleteBtns button {
+        width: 30%;
+        height: 100%;
+        background-color: #887464;
+        color: white;
+        font-size: 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
     @media (max-width: 991.98px) {
         .addProduct-container {
             left: 50%;
@@ -187,7 +248,7 @@
         </div>
     </div>
     <div class="btnCont">
-        <button on:click={openAddQuantity}>Pedir unidades</button>
+        <button>Pedir unidades</button>
         <button>Eliminar producto</button>
         <button>Editar producto</button>
     </div>

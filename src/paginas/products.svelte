@@ -148,8 +148,11 @@
         {/if}
 
         {#if selectedProduct}
-            <!-- Popup con el producto seleccionado -->
-            <ProductPopUp {selectedProduct} />
-        {/if}
+    <ProductPopUp 
+        {selectedProduct} 
+        on:closePopup={() => selectedProduct = null} 
+    />
+{/if}
+
     </div>
 </main>
