@@ -3,6 +3,7 @@
 <script>
     import { createEventDispatcher } from "svelte";
     import { productosStore } from "../lib/stores/store_products.js";
+    import { pedidosStore, addPedido } from "../lib/stores/store_orders.js";
     import AddQuantity from "./AddQuantity.svelte";
 
     export let selectedProduct;
@@ -33,11 +34,12 @@
         dispatch("closePopup"); // Cierra el popup al cancelar
     }
 
-
     let activeComponent = ""; // Controla qué componente se muestra
     const openAddQuantity = () => {
         activeComponent = "addQuantity";
     };
+    
+
 </script>
 
 <style>
@@ -273,10 +275,13 @@
         >
         <button class="btnReedirigir">Editar producto</button>
     </div>
+
     {#if activeComponent === "addQuantity"}
         <AddQuantity
             nombre={selectedProduct.nombre}
             unidadesDisponibles={selectedProduct.unidades}
+            productoSeleccionado={selectedProduct}
+            on:cancelar={cancelar}
         />
     {/if}
 </div>

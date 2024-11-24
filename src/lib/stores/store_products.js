@@ -59,6 +59,17 @@ export const productosStore = (() => {
             return nuevosProductos;
         }),
 
+        updateUnidades: (id, cantidad) => update((productos) => {
+            const nuevosProductos = productos.map((producto) => {
+                if (producto.id === id) {
+                    producto.unidades += cantidad; 
+                }
+                return producto;
+            });
+            syncWithLocalStorage(nuevosProductos); // Sincronizar al actualizar
+            return nuevosProductos;
+        }),
+
         // Resetear a productos iniciales
         reset: () => {
             set(productosIniciales);

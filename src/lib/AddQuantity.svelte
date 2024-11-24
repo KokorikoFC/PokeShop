@@ -1,25 +1,44 @@
 <script>
+    import { createEventDispatcher } from "svelte";
+    import { productosStore } from "../lib/stores/store_products.js";
+    import { pedidosStore, addPedido } from "../lib/stores/store_orders.js";
     export let nombre = "Producto";
     export let unidadesDisponibles = 0;
+    export let productoSeleccionado = {}; 
+
     let cantidad = 0;
+
+    const dispatch = createEventDispatcher();
+
+    // Función que se encargará de manejar el pedido
+    const handlePedido = () => {
+        if (cantidad > 0 && cantidad <= unidadesDisponibles) {
+            // Actualiza el stock del producto
+            productosStore.updateUnidades(productoSeleccionado.id, cantidad);
+
+            // Añadir al historial de pedidos
+            addPedido({
+                nombre,
+                cantidad,
+                fecha: new Date().toLocaleString(),
+            });
+
+            // Emitir un evento para cerrar el popup y mostrar la confirmación
+            alert(`Pedido realizado: ${cantidad} unidades de ${nombre}`);
+            dispatch("closePopup"); // Cerramos el popup
+        } else {
+            alert("Por favor, selecciona una cantidad válida.");
+        }
+    };
+
+    // Función para manejar la cancelación
+    const handleCancelar = () => {
+        dispatch("cancelar");
+    };
 </script>
 
-<main>
-    <h3>{nombre}</h3>
-    <p>{unidadesDisponibles} Unidades disponibles</p>
-    <div class="product-unidades">
-        <button on:click={() => (cantidad = Math.max(0, cantidad - 1))}
-            >-</button
-        >
-        <input type="number" bind:value={cantidad} min="0" />
-        <button on:click={() => cantidad++}>+</button>
-        <span>unidades</span>
-    </div>
-    <button>Pedir</button>
-</main>
-
 <style>
-    main{
+    main {
         height: 50%;
         width: 50%;
         background-color: beige;
@@ -31,3 +50,23 @@
         position: absolute;
     }
 </style>
+
+<main>
+    <h3>{nombre}</h3>
+    <p>{unidadesDisponibles} Unidades disponibles</p>
+    <div class="product-unidades">
+        <button on:click={() => (cantidad = Math.max(0, cantidad - 1))}
+            >-</button
+        >
+        <input
+            type="number"
+            bind:value={cantidad}
+            min="0"
+            max={unidadesDisponibles}
+        />
+        <button on:click={() => cantidad++}>+</button>
+        <span>unidades</span>
+    </div>
+    <button on:click={handlePedido}>Pedir</button>
+    <button on:click={handleCancelar}>Cancelar</button>
+</main>
