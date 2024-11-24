@@ -14,62 +14,22 @@
     // Se suscribe al store para obtener los productos
     $: productosData = $productos;
 
-
     function toggleAddProduct() {
         showAddProduct = !showAddProduct; // Alterna la visibilidad
     }
 
     function handleProductClick(event) {
-    console.log("Producto seleccionado:", event.detail); // Verifica el producto
-    selectedProduct = event.detail; // Extrae el producto del evento
-}
-
-
-
+        console.log("Producto seleccionado:", event.detail); // Verifica el producto
+        selectedProduct = event.detail; // Extrae el producto del evento
+    }
 </script>
 
-<main id="main" class={cols}>
-
-    <div class="content">
-        <div class="title_perfil">
-            <div class="title">
-                <h1>Productos</h1>
-            </div>
-            <div class="perfil">
-                <figure class="icono">
-                    <img src="src/img/foto.jpg" alt="perfil" />
-                </figure>
-                <p>Antonio Perez</p>
-            </div>
-        </div>
-        <div class="addProduct" id="addProduct" on:click={toggleAddProduct}>
-            <p>Añadir</p>
-        </div>
-
-        <div class="products" id="products">
-            <!-- Captura el evento clickProduct -->
-            <Productos {productosData} on:clickProduct={handleProductClick} />
-        </div>
-
-        {#if showAddProduct}
-            <AddProduct />
-        {/if}
-
-        {#if selectedProduct}
-            <!-- Popup con el producto seleccionado -->
-            <ProductPopUp {selectedProduct}/>
-        {/if}
-    </div>
-</main>
-
-
 <style>
-       main {
+    main {
         height: 200vh;
         background-color: beige;
         padding: 2%;
     }
-
 
     .addProduct {
         transition:
@@ -156,14 +116,13 @@
             border-radius: 35px;
         }
         .addProduct {
-        width: 150px;
-    }
+            width: 150px;
+        }
     }
 </style>
 
 <main id="main" class={cols}>
     <div class="content">
-        <div class="overlay"></div>
         <div class="title_perfil">
             <div class="title">
                 <h1>Productos</h1>
@@ -180,11 +139,17 @@
         </div>
 
         <div class="products" id="products">
-            <Productos {productosData} />
+            <!-- Captura el evento clickProduct -->
+            <Productos {productosData} on:clickProduct={handleProductClick} />
         </div>
 
         {#if showAddProduct}
             <AddProduct />
+        {/if}
+
+        {#if selectedProduct}
+            <!-- Popup con el producto seleccionado -->
+            <ProductPopUp {selectedProduct} />
         {/if}
     </div>
 </main>
