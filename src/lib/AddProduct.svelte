@@ -299,9 +299,11 @@
     @media (max-width: 991.98px) {
         .addProduct-container {
             left: 50%;
-            top: 45%;
-            height: 80vh;
+            top: 50%;
+            height: 97vh;
             width: 95%;
+            min-width: auto;
+            z-index: 5;
         }
         .addproduct-img-info {
             flex-direction: column;

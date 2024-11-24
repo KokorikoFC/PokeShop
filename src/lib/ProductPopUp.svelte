@@ -16,11 +16,11 @@
     }
 
     .addProduct-container {
-        max-width: 800px;
+        width: 770px;
         height: 500px;
         position: fixed;
         top: 50%;
-        left: 50%;
+        left: 57%;
         transform: translate(-50%, -50%);
         display: flex;
         justify-content: space-between;
@@ -69,6 +69,8 @@
         padding: 20px;
         font-size: 18px;
         border: 4px solid #fde379;
+        overflow-y: scroll;
+        width: 100%;
     }
 
     .product-unidades-price {
@@ -120,9 +122,10 @@
     @media (max-width: 991.98px) {
         .addProduct-container {
             left: 50%;
-            top: 45%;
-            height: 80vh;
+            top: 50%;
+            height: 98vh;
             width: 95%;
+            z-index: 5;
         }
         .addproduct-img-info {
             flex-direction: column;
@@ -140,14 +143,15 @@
 
         .product-unidades-price {
             flex-direction: column;
-            height: 20%;
-            gap: 10px;
+            height: 15%;
+            
         }
         .product-unidades,
         .product-price {
             width: 100%;
             justify-content: start;
             align-items: center;
+            font-size: 20px;
         }
     }
 </style>

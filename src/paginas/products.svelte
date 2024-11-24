@@ -28,7 +28,7 @@
     main {
         height: 200vh;
         background-color: beige;
-        padding: 2%;
+        padding: 3%;
     }
 
     .addProduct {
