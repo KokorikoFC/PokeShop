@@ -305,6 +305,8 @@
         font-family: Arial, sans-serif;
         font-size: 22px;
         padding: 0 25px;
+        background-color: transparent;
+        border: none;
     }
 
     .product-unidades {

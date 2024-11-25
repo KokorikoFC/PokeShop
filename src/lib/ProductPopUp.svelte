@@ -30,74 +30,52 @@
         dispatch("closePopup"); // Notifica al padre que cierre el popup
     }
 
+    let cantidad = 0;
+
+    function mostrarHacerPedido() {
+        let btnCont = document.getElementById("btnCont");
+        btnCont.style.display = "none";
+        let orderCont = document.getElementById("orderCont");
+        orderCont.style.display = "flex";
+        let productUnidadesPrice = document.getElementById(
+            "product-unidades-price"
+        );
+        productUnidadesPrice.style.display = "none";
+    }
+
+    function ocultarHacerPedido() {
+        let btnCont = document.getElementById("btnCont");
+        btnCont.style.display = "flex";
+        let orderCont = document.getElementById("orderCont");
+        orderCont.style.display = "none";
+        let productUnidadesPrice = document.getElementById(
+            "product-unidades-price"
+        );
+        productUnidadesPrice.style.display = "flex";
+    }
+
+    function hacerPedido() {
+        console.log("Añadir:", selectedProduct);
+        if (cantidad > 0) {
+            productosStore.updateUnidades(selectedProduct.id, cantidad);
+            addPedido({
+                nombre: selectedProduct.nombre,
+                cantidad,
+                fecha: new Date().toLocaleString(),
+            });
+            alert(
+                `Pedido realizado: ${cantidad} unidades de ${selectedProduct.nombre}`
+            );
+            dispatch("closePopup");
+        } else {
+            alert("Por favor, pon una cantidad válida.");
+        }
+    }
+
     function cancelar() {
         dispatch("closePopup"); // Cierra el popup al cancelar
     }
-
-    let activeComponent = ""; // Controla qué componente se muestra
-    const openAddQuantity = () => {
-        activeComponent = "addQuantity";
-    };
 </script>
-
-<div class="addProduct-container">
-    <div class="close" on:click={cancelar}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 15 15"><path fill="#000000" d="M3.64 2.27L7.5 6.13l3.84-3.84A.92.92 0 0 1 12 2a1 1 0 0 1 1 1a.9.9 0 0 1-.27.66L8.84 7.5l3.89 3.89A.9.9 0 0 1 13 12a1 1 0 0 1-1 1a.92.92 0 0 1-.69-.27L7.5 8.87l-3.85 3.85A.92.92 0 0 1 3 13a1 1 0 0 1-1-1a.9.9 0 0 1 .27-.66L6.16 7.5L2.27 3.61A.9.9 0 0 1 2 3a1 1 0 0 1 1-1c.24.003.47.1.64.27"/></svg>
-    </div>
-    <div class="addproduct-img-info">
-        <div class="addproduct-img">
-            <img
-                class="imgProdcuto"
-                src={selectedProduct.urlImagen}
-                alt={selectedProduct.nombre}
-            />
-        </div>
-
-        <div class="product-info">
-            <h2>{selectedProduct.nombre}</h2>
-            <div class="product-info__description">
-                <p>{selectedProduct.descripcion}</p>
-            </div>
-        </div>
-    </div>
-    <div class="product-unidades-price">
-        <div class="product-unidades">
-            <p>Unidades disponibles: {selectedProduct.unidades}</p>
-        </div>
-        <div class="product-price">
-            <p>Precio: {selectedProduct.precio}€</p>
-        </div>
-    </div>
-    <div class="deleteCont" id="deleteCont">
-        <div class="deleteText">
-            <p>¿Estás seguro de que quieres eliminar este producto?</p>
-        </div>
-        <div class="deleteBtns">
-            <button on:click={eliminarProducto}>Eliminar producto</button>
-            <button id="btnCancelar" on:click={ocultarEliminarProducto}
-                >Cancelar</button
-            >
-        </div>
-    </div>
-    <div class="btnCont" id="btnCont">
-        <button class="btnReedirigir" on:click={openAddQuantity}
-            >Pedir unidades</button
-        >
-        <button class="btnReedirigir" on:click={mostrarEliminarProducto}
-            >Eliminar producto</button
-        >
-        <button class="btnReedirigir">Editar producto</button>
-    </div>
-
-    {#if activeComponent === "addQuantity"}
-        <AddQuantity
-            nombre={selectedProduct.nombre}
-            unidadesDisponibles={selectedProduct.unidades}
-            productoSeleccionado={selectedProduct}
-            on:cancelar={cancelar}
-        />
-    {/if}
-</div>
 
 <style>
     p {
@@ -229,7 +207,8 @@
         cursor: pointer;
     }
 
-    .deleteCont {
+    .deleteCont,
+    .orderCont {
         border: 1px solid black;
         width: 100%;
         display: flex;
@@ -239,8 +218,14 @@
         gap: 20px;
         display: none;
     }
+    .orderCont {
+        height: 40%;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 
-    .deleteText {
+    .deleteText,
+    .orderText {
         width: 100%;
         display: flex;
         justify-content: center;
@@ -248,14 +233,16 @@
         border: 1px solid black;
     }
 
-    .deleteBtns {
+    .deleteBtns,
+    .orderBtns {
         width: 100%;
         display: flex;
         justify-content: space-around;
         align-items: center;
     }
 
-    .deleteBtns button {
+    .deleteBtns button,
+    .orderBtns button {
         width: 30%;
         height: 100%;
         background-color: #887464;
@@ -266,6 +253,11 @@
         cursor: pointer;
     }
 
+    .cuantityInputCont {
+        background-color: beige;
+        width: 100%;
+        height: 30%;
+    }
     @media (max-width: 991.98px) {
         .addProduct-container {
             left: 50%;
@@ -304,3 +296,88 @@
         }
     }
 </style>
+
+<div class="addProduct-container">
+    <div class="close" on:click={cancelar}>
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            viewBox="0 0 15 15"
+            ><path
+                fill="#000000"
+                d="M3.64 2.27L7.5 6.13l3.84-3.84A.92.92 0 0 1 12 2a1 1 0 0 1 1 1a.9.9 0 0 1-.27.66L8.84 7.5l3.89 3.89A.9.9 0 0 1 13 12a1 1 0 0 1-1 1a.92.92 0 0 1-.69-.27L7.5 8.87l-3.85 3.85A.92.92 0 0 1 3 13a1 1 0 0 1-1-1a.9.9 0 0 1 .27-.66L6.16 7.5L2.27 3.61A.9.9 0 0 1 2 3a1 1 0 0 1 1-1c.24.003.47.1.64.27"
+            ></path></svg
+        >
+    </div>
+    <div class="addproduct-img-info">
+        <div class="addproduct-img">
+            <img
+                class="imgProdcuto"
+                src={selectedProduct.urlImagen}
+                alt={selectedProduct.nombre}
+            />
+        </div>
+
+        <div class="product-info">
+            <h2>{selectedProduct.nombre}</h2>
+            <div class="product-info__description">
+                <p>{selectedProduct.descripcion}</p>
+            </div>
+        </div>
+    </div>
+    <div class="product-unidades-price" id="product-unidades-price">
+        <div class="product-unidades">
+            <p>Unidades disponibles: {selectedProduct.unidades}</p>
+        </div>
+        <div class="product-price">
+            <p>Precio: {selectedProduct.precio}€</p>
+        </div>
+    </div>
+    <div class="deleteCont" id="deleteCont">
+        <div class="deleteText">
+            <p>¿Estás seguro de que quieres eliminar este producto?</p>
+        </div>
+        <div class="orderBtns">
+            <button on:click={eliminarProducto}>Eliminar producto</button>
+            <button id="btnCancelar" on:click={ocultarEliminarProducto}
+                >Cancelar</button
+            >
+        </div>
+    </div>
+    <div class="orderCont" id="orderCont">
+        <div class="orderText">
+            <p>¿Cuánto quieres pedir?</p>
+        </div>
+        <div class="cuantityInputCont">
+            <div class="product-unidades">
+                <button on:click={() => (cantidad = Math.max(0, cantidad - 1))}
+                    >-</button
+                >
+                <input
+                    type="number"
+                    bind:value={cantidad}
+                    min="0"
+                    max={selectedProduct.unidades}
+                />
+                <button on:click={() => cantidad++}>+</button>
+                <span>unidades</span>
+            </div>
+        </div>
+        <div class="orderBtns">
+            <button on:click={hacerPedido}>Añadir producto</button>
+            <button id="btnCancelar" on:click={ocultarHacerPedido}
+                >Cancelar</button
+            >
+        </div>
+    </div>
+    <div class="btnCont" id="btnCont">
+        <button class="btnReedirigir" on:click={mostrarHacerPedido}
+            >Pedir unidades</button
+        >
+        <button class="btnReedirigir" on:click={mostrarEliminarProducto}
+            >Eliminar producto</button
+        >
+        <button class="btnReedirigir">Editar producto</button>
+    </div>
+</div>
