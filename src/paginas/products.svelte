@@ -33,6 +33,10 @@
         position: relative;
     }
 
+    p {
+        margin: 0;
+    }
+
     main::-webkit-scrollbar {
         width: 0px;
         height: 0px;
@@ -106,21 +110,43 @@
         height: 100%;
         object-fit: cover;
     }
+
+    .menu {
+        border: 1px solid black;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     .perfil p {
         font-size: 20px;
     }
     .addProduct {
         border: 1px solid black;
         height: 8%;
-        width: 100%;
+        width: 10%;
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: white;
+        padding: 10px;
     }
     .addProduct:hover {
         cursor: pointer;
     }
+
+    .historial {
+        border: 1px solid black;
+        height: 8%;
+        width: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        padding: 10px;
+    }
+
     .products {
         width: 100%;
         border: 1px solid black;
@@ -158,8 +184,13 @@
                 <p>Antonio Perez</p>
             </div>
         </div>
-        <div class="addProduct" id="addProduct" on:click={toggleAddProduct}>
-            <p>Añadir</p>
+        <div class="menu">
+            <div class="addProduct" id="addProduct" on:click={toggleAddProduct}>
+                <p>Añadir</p>
+            </div>
+            <div class="historial">
+                <p>Historial</p>
+            </div>
         </div>
 
         <div class="products" id="products">
