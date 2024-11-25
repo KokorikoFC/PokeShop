@@ -73,7 +73,7 @@
     }
 
     function cancelar() {
-        dispatch("closePopup"); // Cierra el popup al cancelar
+        dispatch("closePopup");
     }
 </script>
 
@@ -177,6 +177,7 @@
     .product-unidades {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 10px;
         height: 100%;
         width: 50%;
@@ -215,7 +216,6 @@
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
-        gap: 20px;
         display: none;
     }
     .orderCont {
@@ -230,11 +230,61 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 1px solid black;
+        font-size: 20px;
+        padding: 10px;
+        font-weight: 600;
+    }
+    
+
+    .cuantityInputCont {
+        width: 100%;
+        height: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .orderText {
+        flex-direction: column;
+        padding-top: 15px;
+    }
+    .orderTextUnits {
+        font-size: 18px;
+        background-color: white;
+        border: 4px solid #fde379;
+        border-radius: 10px;
+        padding: 5px 10px 5px 10px;
+    }
+
+    .product-unidades input {
+        width: 30%;
+        border: none;
+        border-radius: 10px;
+        border: 4px solid #fde379;
+        text-align: center;
+        font-size: 18px;
+        padding: 5px;
+    }
+    .product-unidades span{
+        font-size: 18px;
+    }
+    .product-unidades button {
+        padding: 0;
+        font-size: 20px;
+        aspect-ratio: 1;
+        height: 30px;
+        border: none;
+        border-radius: 50%;
+        background-color: #fde379;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
     }
 
     .deleteBtns,
     .orderBtns {
+        height: 35px;
         width: 100%;
         display: flex;
         justify-content: space-around;
@@ -249,15 +299,10 @@
         color: white;
         font-size: 20px;
         border: none;
-        border-radius: 8px;
+        border-radius: 6px;
         cursor: pointer;
     }
 
-    .cuantityInputCont {
-        background-color: beige;
-        width: 100%;
-        height: 30%;
-    }
     @media (max-width: 991.98px) {
         .addProduct-container {
             left: 50%;
@@ -293,6 +338,13 @@
             justify-content: start;
             align-items: center;
             font-size: 20px;
+        }
+        .cuantityInputCont{
+            height: 50%;
+            flex-direction: column;
+        }
+        .orderBtns{
+            height: 60px;
         }
     }
 </style>
@@ -348,8 +400,12 @@
     <div class="orderCont" id="orderCont">
         <div class="orderText">
             <p>¿Cuánto quieres pedir?</p>
+            
         </div>
         <div class="cuantityInputCont">
+            <p class="orderTextUnits">
+                Unidades disponibles: {selectedProduct.unidades}
+            </p>
             <div class="product-unidades">
                 <button on:click={() => (cantidad = Math.max(0, cantidad - 1))}
                     >-</button
