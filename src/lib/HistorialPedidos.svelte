@@ -28,17 +28,21 @@
                 </svg>
             </div>
             <h2>Historial de Pedidos</h2>
-            <ul>
-                {#each historialPedidos as pedido (pedido.fecha)}
-                    <li>
-                        <div class="pedido">
-                            <span class="fecha">{pedido.fecha}</span>
-                            <span class="nombre">{pedido.nombre}</span>
-                            <span class="cantidad">{pedido.cantidad} unidades</span>
-                        </div>
-                    </li>
-                {/each}
-            </ul>
+            <hr>
+            <div class="historialPedidosCont">
+                <ul>
+                    {#each historialPedidos as pedido (pedido.fecha)}
+                        <li>
+                            <div class="pedido">
+                                <span class="fecha">{pedido.fecha}</span>
+                                <span class="nombre">{pedido.nombre}</span>
+                                <span class="cantidad">{pedido.cantidad} unidades</span>
+                            </div>
+                        </li>
+                    {/each}
+                </ul>
+            </div>
+            
         </div>
     </div>
 {/if}
@@ -52,7 +56,7 @@
         z-index: 15;
         width: 100vw;
         height: 100vh;
-        background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro con transparencia */
+        background-color: rgba(0, 0, 0, 0.4); 
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -75,26 +79,32 @@
     /* Panel del historial */
     .historial {
         position: relative;
-        background-color: #ffffff;
+        background-color: #fde379;
         width: 30%;
         height: 90%;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        overflow-y: auto;
+        overflow-y: hidden;
         padding: 20px;
         display: flex;
         flex-direction: column;
     }
 
+
     .historial h2 {
         text-align: center;
         font-size: 1.5rem;
         color: #333;
-        margin-bottom: 20px;
-        border-bottom: 2px solid #f0f0f0;
-        padding-bottom: 10px;
     }
-
+    .historial hr{
+        margin: 20px 0;
+        border: 3px solid #724a18;
+        opacity: 1;
+        border-radius: 30px;
+    }
+    .historialPedidosCont{
+        overflow-y: scroll;
+    }
     /* Lista de pedidos */
     ul {
         list-style: none;
@@ -108,13 +118,12 @@
 
     /* Cada pedido */
     .pedido {
-        background: #f9f9f9;
-        border: 1px solid #e0e0e0;
+        background: white;
         border-radius: 5px;
         padding: 15px;
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 10px;
     }
 
     .pedido:hover {

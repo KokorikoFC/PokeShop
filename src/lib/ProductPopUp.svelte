@@ -4,6 +4,8 @@
     import { createEventDispatcher } from "svelte";
     import { productosStore } from "../lib/stores/store_products.js";
     import { pedidosStore, addPedido } from "../lib/stores/store_orders.js";
+    import { alertMessage } from "../lib/stores/alert_store.js"; // Importa el store de alerta
+
     import AddQuantity from "./AddQuantity.svelte";
 
     export let selectedProduct;
@@ -63,12 +65,12 @@
                 cantidad,
                 fecha: new Date().toLocaleString(),
             });
-            alert(
+            alertMessage.set(
                 `Pedido realizado: ${cantidad} unidades de ${selectedProduct.nombre}`
             );
             dispatch("closePopup");
         } else {
-            alert("Por favor, pon una cantidad válida.");
+            alertMessage.set("Por favor, pon una cantidad válida.");
         }
     }
 
@@ -107,9 +109,8 @@
     .close {
         z-index: 10;
         position: absolute;
-        top: 4%;
-        right: 3%;
-        border: 1px solid black;
+        top: 3%;
+        right: 2%;
         width: fit-content;
         display: flex;
         justify-content: flex-end;
@@ -177,7 +178,7 @@
     .product-unidades {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: end;
         gap: 10px;
         height: 100%;
         width: 50%;
@@ -234,7 +235,6 @@
         padding: 10px;
         font-weight: 600;
     }
-    
 
     .cuantityInputCont {
         width: 100%;
@@ -264,7 +264,7 @@
         font-size: 18px;
         padding: 5px;
     }
-    .product-unidades span{
+    .product-unidades span {
         font-size: 18px;
     }
     .product-unidades button {
@@ -320,6 +320,9 @@
             width: 100%;
             height: 50%;
         }
+        .imgProdcuto {
+            object-fit: contain;
+        }
         .product-info {
             height: 50%;
             width: 100%;
@@ -339,11 +342,11 @@
             align-items: center;
             font-size: 20px;
         }
-        .cuantityInputCont{
+        .cuantityInputCont {
             height: 50%;
             flex-direction: column;
         }
-        .orderBtns{
+        .orderBtns {
             height: 60px;
         }
     }
@@ -379,7 +382,7 @@
         </div>
     </div>
     <div class="product-unidades-price" id="product-unidades-price">
-        <div class="product-unidades">
+        <div class="product__unidades">
             <p>Unidades disponibles: {selectedProduct.unidades}</p>
         </div>
         <div class="product-price">
@@ -400,7 +403,6 @@
     <div class="orderCont" id="orderCont">
         <div class="orderText">
             <p>¿Cuánto quieres pedir?</p>
-            
         </div>
         <div class="cuantityInputCont">
             <p class="orderTextUnits">

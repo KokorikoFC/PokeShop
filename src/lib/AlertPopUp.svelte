@@ -28,14 +28,15 @@
     }
 
     .alertCont {
-        position: absolute;
-        top: 0%; /* Coloca el mensaje cerca de la parte superior */
-        left: 50%; /* Centra horizontalmente respecto al contenedor padre */
+        position: fixed;
+        top: 4%; /* Coloca el mensaje cerca de la parte superior */
+        left: 55%; /* Centra horizontalmente respecto al contenedor padre */
         transform: translateX(-50%); /* Ajusta la posición para centrar el elemento */
-        border: 1px solid black;
+        border-radius: 10px;
         padding: 15px;
         z-index: 15;
-        background-color: red;
+        background-color: white;
+        border: 8px solid #f55f5f;
         display: flex;
         justify-content: center;
         align-items: center;

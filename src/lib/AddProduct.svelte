@@ -229,9 +229,8 @@
     .close {
         z-index: 10;
         position: absolute;
-        top: 4%;
-        right: 3%;
-        border: 1px solid black;
+        top: 3%;
+        right: 2%;
         width: fit-content;
         display: flex;
         justify-content: flex-end;
@@ -413,6 +412,9 @@
         .selected-image {
             object-fit: contain;
         }
+        .imgProdcuto {
+        object-fit: contain;
+    }
         .product-info {
             height: 50%;
             width: 100%;
