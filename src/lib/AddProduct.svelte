@@ -304,6 +304,7 @@
             width: 95%;
             min-width: auto;
             z-index: 5;
+            padding: 15px;
         }
         .addproduct-img-info {
             flex-direction: column;
@@ -312,6 +313,10 @@
         .addproduct-img {
             width: 100%;
             height: 50%;
+            
+        }
+        .selected-image{
+            object-fit: contain;
         }
         .product-info {
             height: 50%;

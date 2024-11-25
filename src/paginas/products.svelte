@@ -25,15 +25,25 @@
 </script>
 
 <style>
-    main{
-        height: 200vh;
+    main {
+        height: auto;
         background-color: beige;
         padding: 3%;
         overflow: hidden;
         position: relative;
     }
 
-    .overlay{
+    main::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+    }
+    main::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    main::-webkit-scrollbar-thumb {
+        background: transparent;
+    }
+    .overlay {
         width: 100%;
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.356);
@@ -137,7 +147,6 @@
 <main id="main" class={cols}>
     <div class="overlay"></div>
     <div class="content">
-        
         <div class="title_perfil">
             <div class="title">
                 <h1>Productos</h1>
@@ -163,11 +172,10 @@
         {/if}
 
         {#if selectedProduct}
-    <ProductPopUp 
-        {selectedProduct} 
-        on:closePopup={() => selectedProduct = null} 
-    />
-{/if}
-
+            <ProductPopUp
+                {selectedProduct}
+                on:closePopup={() => (selectedProduct = null)}
+            />
+        {/if}
     </div>
 </main>
