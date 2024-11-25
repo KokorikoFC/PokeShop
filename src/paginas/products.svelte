@@ -5,17 +5,23 @@
     import Productos from "../lib/Product.svelte";
     import AddProduct from "../lib/AddProduct.svelte";
     import ProductPopUp from "../lib/ProductPopUp.svelte";
+    import Historial from "../lib/HistorialPedidos.svelte";
     export let cols = "";
 
     let productosData = [];
     let showAddProduct = false; // Controla si se muestra el formulario
     let selectedProduct = null; // Producto seleccionado
+    let historial = false; // Controla si se muestra el historial
 
     // Se suscribe al store para obtener los productos
     $: productosData = $productos;
 
     function toggleAddProduct() {
         showAddProduct = !showAddProduct; // Alterna la visibilidad
+    }
+
+    function toggleHistorial() {
+        historial = !historial; // Alterna la visibilidad
     }
 
     function handleProductClick(event) {
@@ -42,7 +48,7 @@
             <div class="addProduct" id="addProduct" on:click={toggleAddProduct}>
                 <p>Añadir</p>
             </div>
-            <div class="historial">
+            <div class="historial" on:click={toggleHistorial}>
                 <p>Historial</p>
             </div>
         </div>
@@ -63,7 +69,11 @@
             />
         {/if}
     </div>
+
 </main>
+{#if historial}
+    <Historial />
+{/if}
 
 <style>
     main {
@@ -186,6 +196,10 @@
         align-items: center;
         background-color: white;
         padding: 10px;
+    }
+
+    .historial:hover {
+        cursor: pointer;
     }
 
     .products {
