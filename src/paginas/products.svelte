@@ -5,6 +5,7 @@
     import Productos from "../lib/Product.svelte";
     import AddProduct from "../lib/AddProduct.svelte";
     import ProductPopUp from "../lib/ProductPopUp.svelte";
+    import AlertPopUp from "../lib/AlertPopUp.svelte";
     import Historial from "../lib/HistorialPedidos.svelte";
     export let cols = "";
 
@@ -68,6 +69,7 @@
                 on:closePopup={() => (selectedProduct = null)}
             />
         {/if}
+        <AlertPopUp />
     </div>
 
 </main>

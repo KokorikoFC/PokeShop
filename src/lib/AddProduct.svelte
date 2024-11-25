@@ -1,6 +1,7 @@
 <script>
     import { createEventDispatcher } from "svelte";
     import { productos } from "../lib/stores/store_products.js";
+    import { alertMessage } from "../lib/stores/alert_store.js"; // Importa el store de alerta
 
     let nombre = "";
     let descripcion = "";
@@ -89,7 +90,9 @@
             precio = 0;
             imageUrl = ""; // Limpiar la imagen mostrada
 
-            alert("Producto añadido!");
+            // Actualizar el mensaje de la alerta
+            alertMessage.set("Producto añadido!");
+            
             console.log("Nuevo producto añadido:", nuevoProducto);
         } else {
             alert("Por favor, rellena todos los campos correctamente.");
