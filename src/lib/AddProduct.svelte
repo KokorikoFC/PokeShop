@@ -1,4 +1,5 @@
 <script>
+    import { createEventDispatcher } from "svelte";
     import { productos } from "../lib/stores/store_products.js";
 
     let nombre = "";
@@ -8,6 +9,7 @@
     let imageFile = null; // Archivo de imagen seleccionado
     let imageUrl = ""; // Variable para almacenar la URL de la imagen seleccionada
 
+    const dispatch = createEventDispatcher();
     // Función para manejar el cambio de imagen
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -93,6 +95,9 @@
             alert("Por favor, rellena todos los campos correctamente.");
         }
     };
+    function cancelar() {
+        dispatch("closePopup"); // Cierra el popup al cancelar
+    }
 </script>
 
 <style>
@@ -146,6 +151,22 @@
         background-color: white;
         border-radius: 10px;
         border: 4px solid #fde379;
+    }
+
+    .close {
+        z-index: 10;
+        position: absolute;
+        top: 4%;
+        right: 3%;
+        border: 1px solid black;
+        width: fit-content;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .close:hover {
+        cursor: pointer;
     }
 
     .custom-label {
@@ -313,9 +334,8 @@
         .addproduct-img {
             width: 100%;
             height: 50%;
-            
         }
-        .selected-image{
+        .selected-image {
             object-fit: contain;
         }
         .product-info {
@@ -352,6 +372,18 @@
 </style>
 
 <div class="addProduct-container">
+    <div class="close" on:click={cancelar}>
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            viewBox="0 0 15 15"
+            ><path
+                fill="#000000"
+                d="M3.64 2.27L7.5 6.13l3.84-3.84A.92.92 0 0 1 12 2a1 1 0 0 1 1 1a.9.9 0 0 1-.27.66L8.84 7.5l3.89 3.89A.9.9 0 0 1 13 12a1 1 0 0 1-1 1a.92.92 0 0 1-.69-.27L7.5 8.87l-3.85 3.85A.92.92 0 0 1 3 13a1 1 0 0 1-1-1a.9.9 0 0 1 .27-.66L6.16 7.5L2.27 3.61A.9.9 0 0 1 2 3a1 1 0 0 1 1-1c.24.003.47.1.64.27"
+            ></path></svg
+        >
+    </div>
     <div class="addproduct-img-info">
         <div class="addproduct-img">
             <input
