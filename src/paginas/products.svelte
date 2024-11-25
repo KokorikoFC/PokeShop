@@ -24,6 +24,47 @@
     }
 </script>
 
+<main id="main" class={cols}>
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="title_perfil">
+            <div class="title">
+                <h1>Productos</h1>
+            </div>
+            <div class="perfil">
+                <figure class="icono">
+                    <img src="src/img/foto.jpg" alt="perfil" />
+                </figure>
+                <p>Antonio Perez</p>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="addProduct" id="addProduct" on:click={toggleAddProduct}>
+                <p>Añadir</p>
+            </div>
+            <div class="historial">
+                <p>Historial</p>
+            </div>
+        </div>
+
+        <div class="products" id="products">
+            <!-- Captura el evento clickProduct -->
+            <Productos {productosData} on:clickProduct={handleProductClick} />
+        </div>
+
+        {#if showAddProduct}
+            <AddProduct on:closePopup={() => (showAddProduct = false)} />
+        {/if}
+
+        {#if selectedProduct}
+            <ProductPopUp
+                {selectedProduct}
+                on:closePopup={() => (selectedProduct = null)}
+            />
+        {/if}
+    </div>
+</main>
+
 <style>
     main {
         height: auto;
@@ -169,44 +210,3 @@
         }
     }
 </style>
-
-<main id="main" class={cols}>
-    <div class="overlay"></div>
-    <div class="content">
-        <div class="title_perfil">
-            <div class="title">
-                <h1>Productos</h1>
-            </div>
-            <div class="perfil">
-                <figure class="icono">
-                    <img src="src/img/foto.jpg" alt="perfil" />
-                </figure>
-                <p>Antonio Perez</p>
-            </div>
-        </div>
-        <div class="menu">
-            <div class="addProduct" id="addProduct" on:click={toggleAddProduct}>
-                <p>Añadir</p>
-            </div>
-            <div class="historial">
-                <p>Historial</p>
-            </div>
-        </div>
-
-        <div class="products" id="products">
-            <!-- Captura el evento clickProduct -->
-            <Productos {productosData} on:clickProduct={handleProductClick} />
-        </div>
-
-        {#if showAddProduct}
-            <AddProduct />
-        {/if}
-
-        {#if selectedProduct}
-            <ProductPopUp
-                {selectedProduct}
-                on:closePopup={() => (selectedProduct = null)}
-            />
-        {/if}
-    </div>
-</main>
