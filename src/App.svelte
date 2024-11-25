@@ -17,7 +17,6 @@
     .mainContent {
         height: 100vh;
         width: 100vw;
-        overflow-y: scroll;
         padding: 20px;
         background-color: #fde379;
     }
