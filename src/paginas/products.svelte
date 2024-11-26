@@ -233,8 +233,9 @@
             <AddProduct on:closePopup={() => (showAddProduct = false)} />
         {/if}
         {#if showEditProduct}
-            <EditProduct on:closePopup={()=> (showEditProduct = false)}/>
+            <EditProduct producto={selectedProduct} on:closePopup={() => (showEditProduct = false)} />
         {/if}
+
         {#if selectedProduct}
             <ProductPopUp
                 {selectedProduct}
