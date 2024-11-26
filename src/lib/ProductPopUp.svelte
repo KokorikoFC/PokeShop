@@ -4,13 +4,20 @@
     import { createEventDispatcher } from "svelte";
     import { productosStore } from "../lib/stores/store_products.js";
     import { pedidosStore, addPedido } from "../lib/stores/store_orders.js";
-    import { alertMessage } from "../lib/stores/alert_store.js"; // Importa el store de alerta
+    import { alertMessage } from "../lib/stores/alert_store.js";
 
     import AddQuantity from "./AddQuantity.svelte";
+    import EditProduct from "./EditProduct.svelte";  // Asegúrate de importar el componente EditProduct
 
     export let selectedProduct;
 
     const dispatch = createEventDispatcher(); // Para emitir eventos al componente padre
+
+    let showEditProduct = false;  // Controla la visibilidad del popup de editar
+
+    function mostrarEditarProducto() {
+        showEditProduct = true;  // Muestra el popup de editar
+    }
 
     function mostrarEliminarProducto() {
         let btnCont = document.getElementById("btnCont");
@@ -436,6 +443,6 @@
         <button class="btnReedirigir" on:click={mostrarEliminarProducto}
             >Eliminar producto</button
         >
-        <button class="btnReedirigir">Editar producto</button>
+        <button class="btnReedirigir" on:click={mostrarEditarProducto}>Editar producto</button>
     </div>
 </div>
