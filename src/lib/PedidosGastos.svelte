@@ -151,7 +151,7 @@
         }
     }
 </style>
-<div class="seccion">
+
     <div class="cuadrado_graficas">
         <div class="graficas">
             <p>Aquí van las gráficas</p>
@@ -186,4 +186,3 @@
             </div>
         </div>
     </div>
-</div>

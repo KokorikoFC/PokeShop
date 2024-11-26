@@ -1,6 +1,8 @@
 <script>
+    import Sidebar from "../lib/Sidebar.svelte";
     export let cols = "";
     import PedidosGastos from "../lib/PedidosGastos.svelte";
+    import Graphic1 from "../lib/Graphic1.svelte";
 </script>
 
 <style>
@@ -9,6 +11,14 @@
         background-color: beige;
         padding: 3%;
     }
+    .seccion{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            text-align: center;
+            align-items: center;
+            height: 100%;
+        }
     .cuadrados {
         display: flex;
         flex-direction: row;
@@ -92,8 +102,13 @@
         }
     }
 </style>
-
 <main class={cols}>
     <h1>Informe de Ventas</h1>
-    <PedidosGastos />
+    <div class="graficas">
+        <Graphic1 />
+
+    </div>
+    <div class="datos">
+        <PedidosGastos />
+    </div>
 </main>
