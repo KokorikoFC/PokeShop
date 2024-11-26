@@ -104,6 +104,7 @@ export const productosStore = (() => {
             return nuevosProductos;
         }),
 
+        // Actualizar unidades de un producto
         updateUnidades: (id, cantidad) => update((productos) => {
             const nuevosProductos = productos.map((producto) => {
                 if (producto.id === id) {
@@ -111,6 +112,15 @@ export const productosStore = (() => {
                 }
                 return producto;
             });
+            syncWithLocalStorage(nuevosProductos); // Sincronizar al actualizar
+            return nuevosProductos;
+        }),
+
+        // Actualizar un producto
+        updateProducto: (productoEditado) => update((productos) => {
+            const nuevosProductos = productos.map((producto) =>
+                producto.id === productoEditado.id ? productoEditado : producto
+            );
             syncWithLocalStorage(nuevosProductos); // Sincronizar al actualizar
             return nuevosProductos;
         }),
