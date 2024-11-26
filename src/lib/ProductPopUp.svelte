@@ -33,6 +33,10 @@
     function cancelar() {
         dispatch("closePopup"); // Cierra el popup al cancelar
     }
+    function mostrarEditarProducto() {
+        dispatch("editarProducto", selectedProduct); // Emitir el evento para editar el producto
+        dispatch("closePopup"); // Opcional: Cerrar el popup después de seleccionar editar
+    }
 
     let activeComponent = ""; // Controla qué componente se muestra
     const openAddQuantity = () => {
@@ -81,12 +85,11 @@
     </div>
     <div class="btnCont" id="btnCont">
         <button class="btnReedirigir" on:click={openAddQuantity}
-            >Pedir unidades</button
-        >
+            >Pedir unidades</button>
         <button class="btnReedirigir" on:click={mostrarEliminarProducto}
-            >Eliminar producto</button
-        >
-        <button class="btnReedirigir">Editar producto</button>
+            >Eliminar producto</button>
+        <button class="btnReedirigir" on:click={mostrarEditarProducto}
+            >Editar producto</button>
     </div>
 
     {#if activeComponent === "addQuantity"}

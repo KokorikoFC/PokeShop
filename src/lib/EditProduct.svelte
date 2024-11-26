@@ -245,10 +245,10 @@
         height: 100px;
         background-color: white;
         border: 2px dashed #ccc;
-        border-radius: 50%;
         font-size: 24px;
         font-weight: bold;
         color: #666;
+        opacity: 0.9;
         cursor: pointer;
         position: absolute;
     }

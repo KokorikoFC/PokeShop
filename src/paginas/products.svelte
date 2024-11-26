@@ -29,6 +29,7 @@
     function handleProductClick(event) {
         console.log("Producto seleccionado:", event.detail); // Verifica el producto
         selectedProduct = event.detail; // Extrae el producto del evento
+        showEditProduct = true; // Muestra el formulario
     }
 </script>
 
@@ -64,8 +65,9 @@
             <AddProduct on:closePopup={() => (showAddProduct = false)} />
         {/if}
         {#if showEditProduct}
-            <EditProduct on:closePopup={()=> (showEditProduct = false)}/>
+            <EditProduct producto={selectedProduct} on:closePopup={() => (showEditProduct = false)} />
         {/if}
+
         {#if selectedProduct}
             <ProductPopUp
                 {selectedProduct}
