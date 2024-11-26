@@ -28,7 +28,7 @@
     // Función para subir la imagen a Cloudinary
     const subirImagen = async () => {
         if (!imageFile) {
-            alert("Selecciona una imagen antes de añadir el producto.");
+            alertMessage.set("Selecciona una imagen.");
             return null;
         }
 
@@ -47,12 +47,12 @@
             if (data.secure_url) {
                 return data.secure_url; // Retorna la URL segura de la imagen subida
             } else {
-                alert("Error al subir la imagen.");
+                alertMessage.set("Error al subir la imagen.");
                 return null;
             }
         } catch (error) {
             console.error("Error al subir la imagen a Cloudinary:", error);
-            alert("Error al subir la imagen.");
+            alertMessage.set("Error al subir la imagen.");
             return null;
         }
     };
@@ -95,7 +95,7 @@
             
             console.log("Nuevo producto añadido:", nuevoProducto);
         } else {
-            alert("Por favor, rellena todos los campos correctamente.");
+            alertMessage.set("Rellena todos los campos.");
         }
     };
     function cancelar() {
