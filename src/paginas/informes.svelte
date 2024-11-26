@@ -3,6 +3,7 @@
     export let cols = "";
     import PedidosGastos from "../lib/PedidosGastos.svelte";
     import Graphic1 from "../lib/Graphic1.svelte";
+    import Graphic2 from "../lib/Graphic2.svelte";
 </script>
 
 <style>
@@ -106,9 +107,8 @@
     <h1>Informe de Ventas</h1>
     <div class="graficas">
         <Graphic1 />
-
+        <Graphic2 />
     </div>
     <div class="datos">
-        <PedidosGastos />
     </div>
 </main>

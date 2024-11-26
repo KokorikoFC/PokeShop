@@ -7,11 +7,11 @@
 
   // Datos para el gráfico
   const data = {
-    labels: ['Gengar Moch.', 'Nendroid Raihan', 'Arcanine Pin', 'Mi', 'May', 'June', 'July'],
+    labels: ['Gengar Moch.', 'Nendroid Raihan', 'Arcanine Pin', 'Tandemaus Pl.', 'Pokeball Arceus', 'Cynthia Firgure', 'Pikachu Plush'],
     datasets: [
       {
-        label: 'My First Dataset',
-        data: [65, 59, 80, 81, 56, 55, 40],
+        label: 'Ventas',
+        data: [245, 234, 187, 123, 109, 90, 60],
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(255, 159, 64, 0.2)',
@@ -48,7 +48,7 @@
         },
         title: {
           display: true,
-          text: 'Gráfico en Svelte con Chart.js'
+
         }
       },
       scales: {
