@@ -43,8 +43,8 @@
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        text-align: center;
-        align-items: center;
+        text-align: top center;
+        align-items: baseline;
         height: auto;
         width: 40%;
     }
@@ -59,7 +59,7 @@
         flex-direction: column;
         justify-content: space-around;
         text-align: center;
-        align-items: center;
+        align-items: baseline;
         height: auto;
         width: 40%;
     }
@@ -105,7 +105,7 @@
             width: 50%;
         }
         .graficas {
-            height: 45%;
+            height: 50%;
             width: 90%;
             border: 2px solid black;
         }
@@ -113,8 +113,8 @@
             display: flex;
             flex-direction: row;
             justify-content: space-around;
-            text-align: center;
-            align-items: center;
+            text-align: top center;
+            align-items: baseline;
             height: 100%;
             width: 100%;
         }
@@ -129,12 +129,12 @@
             flex-direction: column;
             justify-content: space-around;
             text-align: center;
-            align-items: center;
+            align-items: baseline;
             height: 100%;
             width: 100%;
         }
         .gastos{
-            height: auto;
+            height: auto    ;
             width: 100%;
             border: 2px solid black;
             text-align: center;
