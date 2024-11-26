@@ -185,11 +185,11 @@
     }
 
     .addProduct-container {
-        min-width: 750px;
+        min-width: 770px;
         height: 500px;
         position: fixed;
         top: 50%;
-        left: 58%;
+        left: 57%;
         transform: translate(-50%, -50%);
         display: flex;
         justify-content: space-between;
@@ -224,9 +224,8 @@
     .close {
         z-index: 10;
         position: absolute;
-        top: 4%;
-        right: 3%;
-        border: 1px solid black;
+        top: 3%;
+        right: 2%;
         width: fit-content;
         display: flex;
         justify-content: flex-end;
