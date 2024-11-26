@@ -4,19 +4,6 @@
 
 
 <style>
-        main{
-        height: 200vh;
-        background-color: beige;
-        padding: 3%;
-    }
-    .seccion{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        text-align: center;
-        align-items: center;
-        height: 100%;
-    }
     .pedidos_gastos{
         display: flex;
         flex-direction: column;
@@ -24,20 +11,6 @@
         text-align: center;
         align-items: center;
         height: 100%;
-    }
-    .cuadrado_graficas{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        text-align: center;
-        align-items: center;
-        height: auto;
-        width: 50%;
-    }
-    .graficas {
-        height: 50%;
-        width: 100%;
-        border: 2px solid black;
     }
     .cuadrados_pedidos {
         display: flex;
@@ -70,21 +43,6 @@
         background-color: rgba(255, 0, 0, 0.344);
     }
     @media (min-width: 992px) {
-        main {
-            background-color: rgb(255, 255, 255);
-            margin-left: 16%;
-            height: 95vh;
-            overflow-y: scroll;
-            border-radius: 35px;
-        }
-        .seccion{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            text-align: center;
-            align-items: center;
-            height: 100%;
-        }
         .pedidos_gastos{
             display: flex;
             flex-direction: column;
@@ -93,20 +51,6 @@
             align-items: center;
             height: 100%;
             width: 50%;
-        }
-        .cuadrado_graficas{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            text-align: center;
-            align-items: center;
-            height: 100%;
-            width: 50%;
-        }
-        .graficas {
-            height: 50%;
-            width: 90%;
-            border: 2px solid black;
         }
         .cuadrados_pedidos {
             display: flex;
@@ -139,27 +83,9 @@
             background-color: rgba(255, 0, 0, 0.344);
         }
 
-        main::-webkit-scrollbar {
-            width: 0px;
-            height: 0px;
-        }
-        main::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        main::-webkit-scrollbar-thumb {
-            background: transparent; 
-        }
+
     }
 </style>
-
-    <div class="cuadrado_graficas">
-        <div class="graficas">
-            <p>Aquí van las gráficas</p>
-        </div>
-        <div class="graficas">
-            <p>Aquí van las gráficas</p>
-        </div>
-    </div>
     <div class="pedidos_gastos">
         <div class="cuadrados_pedidos">
             <div class="pedidos">
