@@ -12,7 +12,6 @@
     .cuadrados {
         display: flex;
         flex-direction: row;
-        /* justify-content: space-around; */
         text-align: center;
         align-items: flex-start;
         height: 100%;
@@ -27,6 +26,7 @@
         width: 25%;
         border: 2px solid black;
         margin: 20px;
+        background-color: rgb(227, 38, 120);
     }
     .cuadrados_gastos {
         display: flex;
