@@ -1,10 +1,10 @@
 <script>
     export let cols = "";
-    import PedidosGastos from "../lib/PedidosGastos.svelte";
 </script>
 
+
 <style>
-    main {
+        main {
         height: 200vh;
         background-color: beige;
         padding: 3%;
@@ -93,7 +93,35 @@
     }
 </style>
 
-<main class={cols}>
-    <h1>Informe de Ventas</h1>
-    <PedidosGastos />
-</main>
+<div class="cuadrados">
+    <div class="graficas">
+        <p>Aquí van las gráficas</p>
+    </div>
+    <div class="pedidos">
+        <p>Pedidos noviembre</p>
+        <h3>3009€</h3>
+        <p>1.5% + de ganancias</p>
+    </div>
+    <div class="pedidos">
+        <p>Pedidos noviembre</p>
+        <h3>3009€</h3>
+        <p>1.5% + de ganancias</p>
+    </div>
+</div>
+<div class="cuadrados">
+    <div class="graficas">
+        <p>Aquí van las gráficas</p>
+    </div>
+    <div class="cuadrados_gastos">
+        <div class="gastos">
+            <p>Gastos noviembre</p>
+            <h3>3009€</h3>
+            <p>1.5% - de gastos</p>
+        </div>
+        <div class="gastos">
+            <p>Gastos noviembre</p>
+            <h3>3009€</h3>
+            <p>1.5% - de gastos</p>
+        </div>
+    </div>
+</div>
