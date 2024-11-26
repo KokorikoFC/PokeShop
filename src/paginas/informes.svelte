@@ -18,7 +18,8 @@
             justify-content: space-around;
             text-align: center;
             align-items: center;
-            height: 100%;
+            height: 70%;
+            width: 100%;
         }
     .cuadrados {
         display: flex;
@@ -54,6 +55,9 @@
         border: 2px solid black;
         text-align: center;
         margin: 20px;
+    }
+    .datos{
+        width: 50%;
     }
     @media (min-width: 992px) {
         main {
@@ -105,10 +109,13 @@
 </style>
 <main class={cols}>
     <h1>Informe de Ventas</h1>
+    <div class="seccion">
     <div class="graficas">
         <Graphic1 />
         <Graphic2 />
     </div>
     <div class="datos">
+        <PedidosGastos />
+    </div>
     </div>
 </main>
