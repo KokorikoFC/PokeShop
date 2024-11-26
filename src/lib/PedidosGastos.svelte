@@ -67,7 +67,6 @@
         height: auto;
         width: 100%;
         border: 2px solid black;
-        text-align: center;
         background-color: rgba(255, 0, 0, 0.344);
     }
     @media (min-width: 992px) {
@@ -79,12 +78,12 @@
             border-radius: 35px;
         }
         .seccion{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        text-align: center;
-        align-items: center;
-        height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            text-align: center;
+            align-items: center;
+            height: 100%;
         }
         .pedidos_gastos{
             display: flex;
@@ -134,10 +133,9 @@
             width: 100%;
         }
         .gastos{
-            height: auto    ;
+            height: auto;
             width: 100%;
             border: 2px solid black;
-            text-align: center;
             background-color: rgba(255, 0, 0, 0.344);
         }
 
