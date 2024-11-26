@@ -6,10 +6,12 @@
     import AddProduct from "../lib/AddProduct.svelte";
     import ProductPopUp from "../lib/ProductPopUp.svelte";
     import Historial from "../lib/HistorialPedidos.svelte";
+    import EditProduct from "../lib/EditProduct.svelte";
     export let cols = "";
 
     let productosData = [];
     let showAddProduct = false; // Controla si se muestra el formulario
+    let showEditProduct = false; // Controla si se muestra el formulario
     let selectedProduct = null; // Producto seleccionado
     let historial = false; // Controla si se muestra el historial
 
@@ -61,7 +63,9 @@
         {#if showAddProduct}
             <AddProduct on:closePopup={() => (showAddProduct = false)} />
         {/if}
-
+        {#if showEditProduct}
+            <EditProduct on:closePopup={()=> (showEditProduct = false)}/>
+        {/if}
         {#if selectedProduct}
             <ProductPopUp
                 {selectedProduct}
