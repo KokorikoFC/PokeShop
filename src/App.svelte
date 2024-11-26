@@ -1,7 +1,7 @@
 <script>
-    import svelteLogo from "./assets/svelte.svg";
+    //import svelteLogo from "./assets/svelte.svg";
     import { Router, Route } from "svelte-routing";
-    import viteLogo from "/vite.svg";
+    //import viteLogo from "/vite.svg";
     import Productos from "./paginas/products.svelte";
     import Informes from "./paginas/informes.svelte";
     import Sidebar from "./lib/Sidebar.svelte";

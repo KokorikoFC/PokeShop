@@ -1,5 +1,6 @@
 <script>
     export let cols = "";
+    import PedidosGastos from "../lib/PedidosGastos.svelte";
 </script>
 
 <style>
@@ -8,9 +9,40 @@
         background-color: beige;
         padding: 3%;
     }
+    .cuadrados {
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        align-items: flex-start;
+        height: 100%;
+    }
     .graficas {
+        height: auto;
+        width: 40%;
+        border: 2px solid black;
+    }
+    .pedidos {
+        height: auto;
+        width: 25%;
+        border: 2px solid black;
+        margin: 20px;
+        background-color: rgb(227, 38, 120);
+    }
+    .cuadrados_gastos {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-align: center;
+        align-items: center;
+        height: auto;
+        width: 40%;
+    }
+    .gastos{
+        height: auto;
         width: 100%;
         border: 2px solid black;
+        text-align: center;
+        margin: 20px;
     }
     @media (min-width: 992px) {
         main {
@@ -21,10 +53,30 @@
             border-radius: 35px;
 
         }
+        .cuadrados{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            text-align: center;
+            align-items: center;
+            height: 100%;
+        }
         .graficas {
-            height: 200vh;
+            height: 50vh;
             background-color: rgb(255, 255, 255);
-            margin: 0 auto;
+            margin: 0 /*auto*/;
+            border: 2px solid black;
+        }
+        .pedidos {
+            height: max-content;
+            background-color: rgb(255, 255, 255);
+            margin: 0 /*auto*/;
+            border: 2px solid black;
+        }
+        .gastos {
+            height: 30vh;
+            background-color: rgb(255, 255, 255);
+            margin: 0 /*auto*/;
             border: 2px solid black;
         }
         
@@ -43,7 +95,5 @@
 
 <main class={cols}>
     <h1>Informe de Ventas</h1>
-    <div class="graficas">
-        <p>Aquí van las gráficas</p>
-    </div>
+    <PedidosGastos />
 </main>
