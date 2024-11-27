@@ -1,6 +1,7 @@
 <script>
     import { createEventDispatcher } from "svelte";
     import { productos } from "./stores/store_products.js";
+    import { alertMessage } from "../lib/stores/alert_store.js"; 
 
     export let producto;
 
@@ -28,10 +29,7 @@
 
      // Función para subir la imagen a Cloudinary
     const subirImagen = async () => {
-        if (!imageFile) {
-            alert("Selecciona una imagen antes de editar el producto.");
-            return null;
-        }
+
 
         const formData = new FormData();
         formData.append("file", imageFile);
@@ -48,12 +46,12 @@
             if (data.secure_url) {
                 return data.secure_url; // Retorna la URL segura de la imagen subida
             } else {
-                alert("Error al subir la imagen.");
+    
                 return null;
             }
         } catch (error) {
             console.error("Error al subir la imagen a Cloudinary:", error);
-            alert("Error al subir la imagen.");
+     
             return null;
         }
     };
@@ -86,10 +84,10 @@
             // Cierra el formulario de edición
             dispatch("closePopup");
 
-            alert("Producto editado!");
+            alertMessage.set("Producto editado!");
             console.log("Producto editado:", productoEditado);
         } else {
-            alert("Por favor, rellena todos los campos correctamente.");
+            alertMessage.set("Producto añadido!");
         }
     };
 
@@ -185,11 +183,11 @@
     }
 
     .addProduct-container {
-        min-width: 750px;
+        min-width: 770px;
         height: 500px;
         position: fixed;
         top: 50%;
-        left: 58%;
+        left: 57%;
         transform: translate(-50%, -50%);
         display: flex;
         justify-content: space-between;
@@ -224,9 +222,8 @@
     .close {
         z-index: 10;
         position: absolute;
-        top: 4%;
-        right: 3%;
-        border: 1px solid black;
+        top: 3%;
+        right: 2%;
         width: fit-content;
         display: flex;
         justify-content: flex-end;

@@ -5,6 +5,7 @@
     export let nombre = "Producto";
     export let unidadesDisponibles = 0;
     export let productoSeleccionado = {}; 
+    import { alertMessage } from "../lib/stores/alert_store.js"; 
 
     let cantidad = 0;
 
@@ -25,10 +26,10 @@
             });
 
             // Emitir un evento para cerrar el popup y mostrar la confirmación
-            alert(`Pedido realizado: ${cantidad} unidades de ${nombre}`);
+            alertMessage.set('${cantidad} unidades de ${nombre}');
             dispatch("closePopup"); // Cerramos el popup
         } else {
-            alert("Por favor, selecciona una cantidad válida.");
+            alertMessage.set("Selecciona al menos una unidad");
         }
     };
 

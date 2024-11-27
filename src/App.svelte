@@ -20,6 +20,11 @@
         padding: 20px;
         background-color: #fde379;
     }
+    @media (max-width: 991.98px) {
+        .mainContent {
+        height: auto;
+        }
+    }
 </style>
 
 <main class="row d-flex align-items-center">

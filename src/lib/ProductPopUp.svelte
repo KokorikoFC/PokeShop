@@ -4,11 +4,20 @@
     import { createEventDispatcher } from "svelte";
     import { productosStore } from "../lib/stores/store_products.js";
     import { pedidosStore, addPedido } from "../lib/stores/store_orders.js";
+    import { alertMessage } from "../lib/stores/alert_store.js";
+
     import AddQuantity from "./AddQuantity.svelte";
+    import EditProduct from "./EditProduct.svelte"; // Asegúrate de importar el componente EditProduct
 
     export let selectedProduct;
 
     const dispatch = createEventDispatcher(); // Para emitir eventos al componente padre
+
+    let showEditProduct = false; // Controla la visibilidad del popup de editar
+
+    function mostrarEditarProducto() {
+        showEditProduct = true; // Muestra el popup de editar
+    }
 
     function mostrarEliminarProducto() {
         let btnCont = document.getElementById("btnCont");
@@ -30,23 +39,65 @@
         dispatch("closePopup"); // Notifica al padre que cierre el popup
     }
 
-    function cancelar() {
-        dispatch("closePopup"); // Cierra el popup al cancelar
-    }
-    function mostrarEditarProducto() {
-        dispatch("editarProducto", selectedProduct); // Emitir el evento para editar el producto
-        dispatch("closePopup"); // Opcional: Cerrar el popup después de seleccionar editar
+    let cantidad = 0;
+
+    function mostrarHacerPedido() {
+        let btnCont = document.getElementById("btnCont");
+        btnCont.style.display = "none";
+        let orderCont = document.getElementById("orderCont");
+        orderCont.style.display = "flex";
+        let productUnidadesPrice = document.getElementById(
+            "product-unidades-price",
+        );
+        productUnidadesPrice.style.display = "none";
     }
 
-    let activeComponent = ""; // Controla qué componente se muestra
-    const openAddQuantity = () => {
-        activeComponent = "addQuantity";
-    };
+    function ocultarHacerPedido() {
+        let btnCont = document.getElementById("btnCont");
+        btnCont.style.display = "flex";
+        let orderCont = document.getElementById("orderCont");
+        orderCont.style.display = "none";
+        let productUnidadesPrice = document.getElementById(
+            "product-unidades-price",
+        );
+        productUnidadesPrice.style.display = "flex";
+    }
+
+    function hacerPedido() {
+        console.log("Añadir:", selectedProduct);
+        if (cantidad > 0) {
+            productosStore.updateUnidades(selectedProduct.id, cantidad);
+            addPedido({
+                nombre: selectedProduct.nombre,
+                cantidad,
+                fecha: new Date().toLocaleString(),
+            });
+            alertMessage.set(
+                `Pedido realizado: ${cantidad} unidades de ${selectedProduct.nombre}`,
+            );
+            dispatch("closePopup");
+        } else {
+            alertMessage.set("Por favor, pon una cantidad válida.");
+        }
+    }
+
+    function cancelar() {
+        dispatch("closePopup");
+    }
 </script>
 
 <div class="addProduct-container">
     <div class="close" on:click={cancelar}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 15 15"><path fill="#000000" d="M3.64 2.27L7.5 6.13l3.84-3.84A.92.92 0 0 1 12 2a1 1 0 0 1 1 1a.9.9 0 0 1-.27.66L8.84 7.5l3.89 3.89A.9.9 0 0 1 13 12a1 1 0 0 1-1 1a.92.92 0 0 1-.69-.27L7.5 8.87l-3.85 3.85A.92.92 0 0 1 3 13a1 1 0 0 1-1-1a.9.9 0 0 1 .27-.66L6.16 7.5L2.27 3.61A.9.9 0 0 1 2 3a1 1 0 0 1 1-1c.24.003.47.1.64.27"/></svg>
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            viewBox="0 0 15 15"
+            ><path
+                fill="#000000"
+                d="M3.64 2.27L7.5 6.13l3.84-3.84A.92.92 0 0 1 12 2a1 1 0 0 1 1 1a.9.9 0 0 1-.27.66L8.84 7.5l3.89 3.89A.9.9 0 0 1 13 12a1 1 0 0 1-1 1a.92.92 0 0 1-.69-.27L7.5 8.87l-3.85 3.85A.92.92 0 0 1 3 13a1 1 0 0 1-1-1a.9.9 0 0 1 .27-.66L6.16 7.5L2.27 3.61A.9.9 0 0 1 2 3a1 1 0 0 1 1-1c.24.003.47.1.64.27"
+            ></path></svg
+        >
     </div>
     <div class="addproduct-img-info">
         <div class="addproduct-img">
@@ -64,8 +115,8 @@
             </div>
         </div>
     </div>
-    <div class="product-unidades-price">
-        <div class="product-unidades">
+    <div class="product-unidades-price" id="product-unidades-price">
+        <div class="product__unidades">
             <p>Unidades disponibles: {selectedProduct.unidades}</p>
         </div>
         <div class="product-price">
@@ -76,31 +127,62 @@
         <div class="deleteText">
             <p>¿Estás seguro de que quieres eliminar este producto?</p>
         </div>
-        <div class="deleteBtns">
+        <div class="orderBtns">
             <button on:click={eliminarProducto}>Eliminar producto</button>
             <button id="btnCancelar" on:click={ocultarEliminarProducto}
                 >Cancelar</button
             >
         </div>
     </div>
-    <div class="btnCont" id="btnCont">
-        <button class="btnReedirigir" on:click={openAddQuantity}
-            >Pedir unidades</button>
-        <button class="btnReedirigir" on:click={mostrarEliminarProducto}
-            >Eliminar producto</button>
-        <button class="btnReedirigir" on:click={mostrarEditarProducto}
-            >Editar producto</button>
+    <div class="orderCont" id="orderCont">
+        <div class="orderText">
+            <p>¿Cuánto quieres pedir?</p>
+        </div>
+        <div class="cuantityInputCont">
+            <p class="orderTextUnits">
+                Unidades disponibles: {selectedProduct.unidades}
+            </p>
+            <div class="product-unidades">
+                <button on:click={() => (cantidad = Math.max(0, cantidad - 1))}
+                    >-</button
+                >
+                <input
+                    type="number"
+                    bind:value={cantidad}
+                    min="0"
+                    max={selectedProduct.unidades}
+                />
+                <button on:click={() => cantidad++}>+</button>
+                <span>unidades</span>
+            </div>
+        </div>
+        <div class="orderBtns">
+            <button on:click={hacerPedido}>Añadir producto</button>
+            <button id="btnCancelar" on:click={ocultarHacerPedido}
+                >Cancelar</button
+            >
+        </div>
     </div>
-
-    {#if activeComponent === "addQuantity"}
-        <AddQuantity
-            nombre={selectedProduct.nombre}
-            unidadesDisponibles={selectedProduct.unidades}
-            productoSeleccionado={selectedProduct}
-            on:cancelar={cancelar}
-        />
-    {/if}
+    <div class="btnCont" id="btnCont">
+        <button class="btnReedirigir" on:click={mostrarHacerPedido}
+            >Pedir unidades</button
+        >
+        <button class="btnReedirigir" on:click={mostrarEliminarProducto}
+            >Eliminar producto</button
+        >
+        <button class="btnReedirigir" on:click={mostrarEditarProducto}
+            >Editar producto</button
+        >
+    </div>
 </div>
+
+{#if showEditProduct}
+    <EditProduct 
+        producto={selectedProduct}
+        on:closePopup={() => (showEditProduct = false)}
+    />
+{/if}
+
 
 <style>
     p {
@@ -132,9 +214,8 @@
     .close {
         z-index: 10;
         position: absolute;
-        top: 4%;
-        right: 3%;
-        border: 1px solid black;
+        top: 3%;
+        right: 2%;
         width: fit-content;
         display: flex;
         justify-content: flex-end;
@@ -202,6 +283,7 @@
     .product-unidades {
         display: flex;
         align-items: center;
+        justify-content: end;
         gap: 10px;
         height: 100%;
         width: 50%;
@@ -232,40 +314,97 @@
         cursor: pointer;
     }
 
-    .deleteCont {
+    .deleteCont,
+    .orderCont {
         border: 1px solid black;
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
-        gap: 20px;
         display: none;
     }
+    .orderCont {
+        height: 40%;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 
-    .deleteText {
+    .deleteText,
+    .orderText {
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 1px solid black;
+        font-size: 20px;
+        padding: 10px;
+        font-weight: 600;
     }
 
-    .deleteBtns {
+    .cuantityInputCont {
+        width: 100%;
+        height: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .orderText {
+        flex-direction: column;
+        padding-top: 15px;
+    }
+    .orderTextUnits {
+        font-size: 18px;
+        background-color: white;
+        border: 4px solid #fde379;
+        border-radius: 10px;
+        padding: 5px 10px 5px 10px;
+    }
+
+    .product-unidades input {
+        width: 30%;
+        border: none;
+        border-radius: 10px;
+        border: 4px solid #fde379;
+        text-align: center;
+        font-size: 18px;
+        padding: 5px;
+    }
+    .product-unidades span {
+        font-size: 18px;
+    }
+    .product-unidades button {
+        padding: 0;
+        font-size: 20px;
+        aspect-ratio: 1;
+        height: 30px;
+        border: none;
+        border-radius: 50%;
+        background-color: #fde379;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .deleteBtns,
+    .orderBtns {
+        height: 35px;
         width: 100%;
         display: flex;
         justify-content: space-around;
         align-items: center;
     }
 
-    .deleteBtns button {
+    .deleteBtns button,
+    .orderBtns button {
         width: 30%;
         height: 100%;
         background-color: #887464;
         color: white;
         font-size: 20px;
         border: none;
-        border-radius: 8px;
+        border-radius: 6px;
         cursor: pointer;
     }
 
@@ -286,6 +425,9 @@
             width: 100%;
             height: 50%;
         }
+        .imgProdcuto {
+            object-fit: contain;
+        }
         .product-info {
             height: 50%;
             width: 100%;
@@ -304,6 +446,13 @@
             justify-content: start;
             align-items: center;
             font-size: 20px;
+        }
+        .cuantityInputCont {
+            height: 50%;
+            flex-direction: column;
+        }
+        .orderBtns {
+            height: 60px;
         }
     }
 </style>

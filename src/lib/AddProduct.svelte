@@ -1,6 +1,7 @@
 <script>
     import { createEventDispatcher } from "svelte";
     import { productos } from "../lib/stores/store_products.js";
+    import { alertMessage } from "../lib/stores/alert_store.js"; // Importa el store de alerta
 
     let nombre = "";
     let descripcion = "";
@@ -27,7 +28,7 @@
     // Función para subir la imagen a Cloudinary
     const subirImagen = async () => {
         if (!imageFile) {
-            alert("Selecciona una imagen antes de añadir el producto.");
+            alertMessage.set("Selecciona una imagen.");
             return null;
         }
 
@@ -46,12 +47,12 @@
             if (data.secure_url) {
                 return data.secure_url; // Retorna la URL segura de la imagen subida
             } else {
-                alert("Error al subir la imagen.");
+                alertMessage.set("Error al subir la imagen.");
                 return null;
             }
         } catch (error) {
             console.error("Error al subir la imagen a Cloudinary:", error);
-            alert("Error al subir la imagen.");
+            alertMessage.set("Error al subir la imagen.");
             return null;
         }
     };
@@ -89,10 +90,12 @@
             precio = 0;
             imageUrl = ""; // Limpiar la imagen mostrada
 
-            alert("Producto añadido!");
+            // Actualizar el mensaje de la alerta
+            alertMessage.set("Producto añadido!");
+            
             console.log("Nuevo producto añadido:", nuevoProducto);
         } else {
-            alert("Por favor, rellena todos los campos correctamente.");
+            alertMessage.set("Rellena todos los campos.");
         }
     };
     function cancelar() {
@@ -226,9 +229,8 @@
     .close {
         z-index: 10;
         position: absolute;
-        top: 4%;
-        right: 3%;
-        border: 1px solid black;
+        top: 3%;
+        right: 2%;
         width: fit-content;
         display: flex;
         justify-content: flex-end;
@@ -305,6 +307,8 @@
         font-family: Arial, sans-serif;
         font-size: 22px;
         padding: 0 25px;
+        background-color: transparent;
+        border: none;
     }
 
     .product-unidades {
@@ -408,6 +412,9 @@
         .selected-image {
             object-fit: contain;
         }
+        .imgProdcuto {
+        object-fit: contain;
+    }
         .product-info {
             height: 50%;
             width: 100%;

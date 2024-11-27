@@ -22,13 +22,58 @@ const productosIniciales = [
     },
     {
         id: 3,
-        nombre: "Poké Ball",
-        descripcion: "¡Captura tus Pokémon favoritos con esta auténtica Poké Ball!",
-        precio: 14.99,
-        unidades: 30,
+        nombre: "Nendoroid Raihan Posable Figure",
+        descripcion:"El Líder de Gimnasio más fuerte de la región de Galar, Roy, entra en combate como un Nendoroid decidido pero alegre, acompañado de su fiel compañero Duraludon.",
+        precio: 59.99,
+        unidades: 3,
+        valoracion: 5,
+        urlImagen: "public/img/raihan_nendroid.jpg"
+    },
+    {
+        id: 4,
+        nombre: "Pokémon Legends: Arceus Poké Ball Replica Figuree",
+        descripcion: "La región de Hisui, explorada por primera vez en el videojuego Pokémon Legends: Arceus, se celebra en esta réplica de figura de Poké Ball! Cada detalle exquisito",
+        precio: 69.99,
+        unidades: 14,
+        valoracion: 5,
+        urlImagen: "public/img/pokeball_arceus.jpg"
+    },
+    {
+        id: 5,
+        nombre: "Pokémon Trainer Gear Raid Pass Lanyard & Badge Holder",
+        descripcion: "¡Sí, Entrenadores, es hora de salir y lucir su Equipo de Entrenador Pokémon! Este colorido cordón con portatarjetas está inspirado en un Pase de Incursión de Pokémon GO.",
+        precio: 12.99,
+        unidades: 14,
         valoracion: 4,
-        urlImagen: "public/img/PokeBall.jpg"
-    }
+        urlImagen: "public/img/trainer_gear.jpg"
+    },
+    {
+        id: 6,
+        nombre: "Gengar Pokémon Trainer Gear Plush Backpack",
+        descripcion: "¡Sí, Entrenadores, es hora de salir y lucir su Equipo de Entrenador Pokémon! Este colorido cordón con portatarjetas está inspirado en un Pase de Incursión de Pokémon GO.",
+        precio: 34.99,
+        unidades: 17,
+        valoracion: 4,
+        urlImagen: "public/img/gengar_back.jpg"
+    },
+    {
+        id: 7,
+        nombre: "Pokémon Delicious Adventure: Galar Toast Curry Takedown Figure",
+        descripcion: "¡Sí, Entrenadores, es hora de salir y lucir su Equipo de Entrenador Pokémon! Este colorido cordón con portatarjetas está inspirado en un Pase de Incursión de Pokémon GO.",
+        precio: 14.99,
+        unidades: 23,
+        valoracion: 5,
+        urlImagen: "public/img/perrito.jpg"
+    },
+    {
+        id: 8,
+        nombre: "Tandemaus Comfy Friends Plush - 11 ¾ In.",
+        descripcion: "¿Podrías tú, o un Entrenador en formación, necesitar un abrazo? ¡El peluche Tandemaus Comfy Friends es perfecto para los mimos! Este peluche es un compañero acogedor y reconfortante para jugar.",
+        precio: 35.99,
+        unidades: 2,
+        valoracion: 5,
+        urlImagen: "public/img/ratones.jpg"
+    },
 ];
 
 // Recuperar datos de Local Storage (si existen)
