@@ -99,11 +99,10 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 10px;
-        border: 1px solid black;
     }
     .icono {
-        height: 40px;
-        width: 40px;
+        height: 55px;
+        width: 55px;
         border: 1px solid black;
         border-radius: 50%;
         overflow: hidden;
@@ -210,7 +209,7 @@
             </div>
             <div class="perfil">
                 <figure class="icono">
-                    <img src="src/img/foto.jpg" alt="perfil" />
+                    <img src="public/img/foto.jpg" alt="perfil" />
                 </figure>
                 <p>Antonio Perez</p>
             </div>

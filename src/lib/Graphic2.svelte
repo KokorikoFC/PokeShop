@@ -68,11 +68,14 @@
 </script>
 
 <!-- Canvas para el gráfico -->
-<canvas bind:this={canvas} width="400" height="400"></canvas>
+<canvas bind:this={canvas}></canvas>
 
 <style>
   canvas {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    height: 50%;
+    border: 2px solid #fde379;
+    border-radius: 20px;
+    padding: 10px;
   }
 </style>
