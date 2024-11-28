@@ -147,20 +147,20 @@
     }
 
     /* Scroll estilizado */
-    .historial::-webkit-scrollbar {
+    .historialPedidosCont::-webkit-scrollbar {
         width: 8px;
     }
 
-    .historial::-webkit-scrollbar-track {
+    .historialPedidosCont::-webkit-scrollbar-track {
         background: #f1f1f1;
     }
 
-    .historial::-webkit-scrollbar-thumb {
-        background: #888;
+    .historialPedidosCont::-webkit-scrollbar-thumb {
+        background: #724a1858;
         border-radius: 4px;
     }
 
     .historial::-webkit-scrollbar-thumb:hover {
-        background: #555;
+        background: #724a18;
     }
 </style>

@@ -89,7 +89,6 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        border: 1px solid black;
     }
 
     .perfil {
@@ -126,6 +125,7 @@
 
     .perfil p {
         font-size: 20px;
+        font-weight: bold;
     }
     .addProduct {
         height: 8%;
@@ -141,7 +141,6 @@
     }
 
     .historial {
-        border: 1px solid black;
         height: 8%;
         width: 10%;
         display: flex;
@@ -171,11 +170,13 @@
         background-color: #fde379;
         font-size: 20px;
         border: none;
+        font-weight: bold;
     }
     .addProduct:hover,
     .historial:hover {
         transition: all 0.3s ease;
         background-color: #edaf52;
+
     }
     @media (min-width: 992px) {
         main {

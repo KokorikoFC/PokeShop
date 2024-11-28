@@ -385,6 +385,11 @@
         border-radius: 10px;
         cursor: pointer;
     }
+    .addBtn:hover {
+        transition: all 0.3s;
+        background-color: #473d34;
+    
+    }   
     @media (max-width: 991.98px) {
         .addProduct-container {
             left: 50%;

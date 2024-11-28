@@ -100,6 +100,14 @@
 
     .product:hover {
         cursor: pointer;
+        background-color: rgb(205, 48, 48);
+        transition: all 0.3s ease;
+        
+    }
+    .product:hover .product-img img {
+        transform: scale(1.05);
+        transition: all 0.3s ease;
+        
     }
 
     .product-img {

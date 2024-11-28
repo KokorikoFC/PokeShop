@@ -190,11 +190,11 @@
     }
 
     .addProduct-container {
-        min-width: 750px;
+        width: 770px;
         height: 500px;
         position: fixed;
         top: 50%;
-        left: 58%;
+        left: 57%;
         transform: translate(-50%, -50%);
         display: flex;
         justify-content: space-between;
