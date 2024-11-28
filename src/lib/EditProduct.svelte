@@ -81,6 +81,9 @@
             // Actualiza el store con el producto editado
             productos.updateProducto(productoEditado);
 
+            // Emite el producto actualizado
+            dispatch("productoActualizado", productoEditado);
+
             // Cierra el formulario de edición
             dispatch("closePopup");
 

@@ -19,6 +19,11 @@
         showEditProduct = true; // Muestra el popup de editar
     }
 
+    const handleProductoActualizado = (productoActualizado) => {
+        selectedProduct = productoActualizado; // Actualiza el producto
+        showEditProduct = false; // Cierra el popup de edición
+    };
+
     function mostrarEliminarProducto() {
         let btnCont = document.getElementById("btnCont");
         btnCont.style.display = "none";
@@ -177,8 +182,9 @@
 </div>
 
 {#if showEditProduct}
-    <EditProduct 
-        producto={selectedProduct}
+    <EditProduct
+        bind:producto={selectedProduct}
+        on:productoActualizado={(e) => handleProductoActualizado(e.detail)}
         on:closePopup={() => (showEditProduct = false)}
     />
 {/if}
