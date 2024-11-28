@@ -34,7 +34,7 @@
         justify-content: center;
         gap: 10px;
     }
-    .logoNameCont svg {
+    .logoNameCont img {
         height: 50px;
     }
     .logoNameCont h2 {
@@ -73,8 +73,9 @@
         align-items: center;
     }
     a:hover {
-        background-color: rgb(245, 95, 95);
+        background-color: #483011;
         color: rgb(255, 255, 255);
+        transition: all 0.3s ease;
     }
     .footerMediaCont svg {
         height: 40px;
@@ -86,14 +87,13 @@
         align-items: end;
         font-size: 12px;
     }
-    /*
-    .headerLogoCont,
-    .footerCont,
-    .copy,
-    ul {
-        border: 2px solid black;
+    svg:hover {
+        cursor: pointer;
+        fill: #483011;
+        transition: all 0.3s ease;
+        transform: scale(1.05);
+        transform: rotate(10deg);
     }
-*/
     @media (min-width: 992px) {
         nav {
             height: 100vh;
@@ -134,35 +134,7 @@
         <div class="headerLogoCont col-2 col-lg-12">
             <div class="logoNameCont">
                 <h2>Poke Shop</h2>
-                <svg
-                    viewBox="0 0 48 48"
-                    id="a"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="#000000"
-                    ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
-                        id="SVGRepo_tracerCarrier"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    ></g><g id="SVGRepo_iconCarrier"
-                        ><defs
-                            ><style>
-                                .c {
-                                    fill: none;
-                                    stroke: #000000;
-                                    stroke-linecap: round;
-                                    stroke-linejoin: round;
-                                }
-                            </style></defs
-                        ><circle id="b" class="c" cx="23.99" cy="23.99" r="8"
-                        ></circle><path
-                            class="c"
-                            d="M2.83,27.75c1.77,10.08,10.57,17.74,21.16,17.74s19.39-7.66,21.16-17.74h-8.71c-1.61,5.35-6.58,9.24-12.45,9.24s-10.84-3.89-12.45-9.24H2.83Z"
-                        ></path><path
-                            class="c"
-                            d="M2.82,20.25C4.59,10.16,13.4,2.49,23.99,2.49s19.4,7.67,21.17,17.76h-8.71c-1.61-5.36-6.58-9.26-12.46-9.26s-10.85,3.9-12.46,9.26H2.82Z"
-                        ></path></g
-                    ></svg
-                >
+                <img src="public/img/pokeball.png" alt="">
             </div>
 
             <hr />
@@ -206,30 +178,31 @@
                 >
 
                 <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
+                    fill="#724a18"
+                    height="200px"
+                    width="200px"
+                    version="1.1"
+                    id="Shopicons"
                     xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 48 48"
+                    xml:space="preserve"
                     ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
                         id="SVGRepo_tracerCarrier"
                         stroke-linecap="round"
                         stroke-linejoin="round"
                     ></g><g id="SVGRepo_iconCarrier">
-                        <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
-                            fill="#724a18"
-                        ></path>
-                        <path
-                            d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z"
-                            fill="#724a18"
-                        ></path>
-                        <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M1.65396 4.27606C1 5.55953 1 7.23969 1 10.6V13.4C1 16.7603 1 18.4405 1.65396 19.7239C2.2292 20.8529 3.14708 21.7708 4.27606 22.346C5.55953 23 7.23969 23 10.6 23H13.4C16.7603 23 18.4405 23 19.7239 22.346C20.8529 21.7708 21.7708 20.8529 22.346 19.7239C23 18.4405 23 16.7603 23 13.4V10.6C23 7.23969 23 5.55953 22.346 4.27606C21.7708 3.14708 20.8529 2.2292 19.7239 1.65396C18.4405 1 16.7603 1 13.4 1H10.6C7.23969 1 5.55953 1 4.27606 1.65396C3.14708 2.2292 2.2292 3.14708 1.65396 4.27606ZM13.4 3H10.6C8.88684 3 7.72225 3.00156 6.82208 3.0751C5.94524 3.14674 5.49684 3.27659 5.18404 3.43597C4.43139 3.81947 3.81947 4.43139 3.43597 5.18404C3.27659 5.49684 3.14674 5.94524 3.0751 6.82208C3.00156 7.72225 3 8.88684 3 10.6V13.4C3 15.1132 3.00156 16.2777 3.0751 17.1779C3.14674 18.0548 3.27659 18.5032 3.43597 18.816C3.81947 19.5686 4.43139 20.1805 5.18404 20.564C5.49684 20.7234 5.94524 20.8533 6.82208 20.9249C7.72225 20.9984 8.88684 21 10.6 21H13.4C15.1132 21 16.2777 20.9984 17.1779 20.9249C18.0548 20.8533 18.5032 20.7234 18.816 20.564C19.5686 20.1805 20.1805 19.5686 20.564 18.816C20.7234 18.5032 20.8533 18.0548 20.9249 17.1779C20.9984 16.2777 21 15.1132 21 13.4V10.6C21 8.88684 20.9984 7.72225 20.9249 6.82208C20.8533 5.94524 20.7234 5.49684 20.564 5.18404C20.1805 4.43139 19.5686 3.81947 18.816 3.43597C18.5032 3.27659 18.0548 3.14674 17.1779 3.0751C16.2777 3.00156 15.1132 3 13.4 3Z"
-                            fill="#724a18"
-                        ></path>
+                        <style type="text/css">
+                            .st0 {
+                                fill: none;
+                            }
+                        </style>
+                        <g>
+                            <path class="st0" d="M0,0h48v48H0V0z"></path>
+                            <path
+                                d="M36,4H12c-4.4,0-8,3.6-8,8v24c0,4.4,3.6,8,8,8h24c4.4,0,8-3.6,8-8V12C44,7.6,40.4,4,36,4z M24,34c-5.5,0-10-4.5-10-10 s4.5-10,10-10s10,4.5,10,10S29.5,34,24,34z M35,15c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C37,14.1,36.1,15,35,15z"
+                            ></path>
+                        </g>
                     </g></svg
                 >
             </div>

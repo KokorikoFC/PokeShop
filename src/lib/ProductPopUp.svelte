@@ -6,7 +6,6 @@
     import { pedidosStore, addPedido } from "../lib/stores/store_orders.js";
     import { alertMessage } from "../lib/stores/alert_store.js";
 
-    import AddQuantity from "./AddQuantity.svelte";
     import EditProduct from "./EditProduct.svelte"; // Asegúrate de importar el componente EditProduct
 
     export let selectedProduct;
@@ -149,7 +148,9 @@
             </p>
             <div class="product-unidades">
                 <button on:click={() => (cantidad = Math.max(0, cantidad - 1))}
-                    >-</button
+                    >
+                    <p>-</p>
+                    </button
                 >
                 <input
                     type="number"
@@ -157,7 +158,9 @@
                     min="0"
                     max={selectedProduct.unidades}
                 />
-                <button on:click={() => cantidad++}>+</button>
+                <button on:click={() => cantidad++}>
+                    <p>+</p>
+                </button>
                 <span>unidades</span>
             </div>
         </div>
@@ -320,9 +323,12 @@
         cursor: pointer;
     }
 
+    .btnCont button:hover,.deleteBtns button:hover,.orderBtns button:hover {
+        transition: all 0.3s;
+        background-color: #473d34;
+    }
     .deleteCont,
     .orderCont {
-        border: 1px solid black;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -392,6 +398,10 @@
         text-align: center;
         cursor: pointer;
     }
+    .product-unidades button p{
+        margin-bottom: 3px;
+        font-weight: bold;
+    }
 
     .deleteBtns,
     .orderBtns {
@@ -413,6 +423,7 @@
         border-radius: 6px;
         cursor: pointer;
     }
+    
 
     @media (max-width: 991.98px) {
         .addProduct-container {
