@@ -5,7 +5,7 @@ PokeShop is a fan-made Pokémon webshop that simulates stock management and sale
 ## Preview
 ![PokeShop](https://github.com/KokorikoFC/PokeShop/blob/main/public/img/preview.png "PokeShop")
 
-Visualize in [Website](https://github.com/KokorikoFC/PokeShop)
+Visualize in [GitHub Repository](https://github.com/KokorikoFC/PokeShop)
 
 ## About
 PokeShop offers an interactive experience where you can manage your product inventory, add or edit items, and track sales data with graphical representations. 
