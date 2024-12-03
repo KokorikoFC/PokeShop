@@ -3,9 +3,9 @@
 PokeShop is a fan-made Pokémon webshop that simulates stock management and sales statistics. The website allows users to explore official Pokémon merchandise, manage products, and view detailed analytics on sales performance.
 
 ## Preview
-![PokeShop](./img/preview.png "PokeShop")
+![PokeShop](https://github.com/KokorikoFC/PokeShop/blob/main/public/img/preview.png "PokeShop")
 
-Visualize in [Website](https://github.com/KokorikoFC/PokeShop/blob/main/public/img/preview.png)
+Visualize in [Website](https://github.com/KokorikoFC/PokeShop)
 
 ## About
 PokeShop offers an interactive experience where you can manage your product inventory, add or edit items, and track sales data with graphical representations. 
