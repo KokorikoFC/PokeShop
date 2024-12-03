@@ -50,9 +50,9 @@
             <p>+8.7% de ganancias</p>
         </div>
         <div class="pedidos">
-            <h2>Pedidos noviembre</h2>
-            <h3>3052€</h3>
-            <p>+1.9% de ganancias</p>
+            <h2>Pedidos diciembre</h2>
+            <h3>5052€</h3>
+            <p>+12.9% de ganancias</p>
         </div>
     </div>
     <div class="cuadrados_gastos">
@@ -62,7 +62,7 @@
             <p>2.5% - de gastos</p>
         </div>
         <div class="gastos">
-            <h2>Gastos noviembre</h2>
+            <h2>Gastos diciembre</h2>
             <h3>2659€</h3>
             <p>5.2% - de gastos</p>
         </div>
