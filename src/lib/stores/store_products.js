@@ -50,7 +50,7 @@ const productosIniciales = [
     {
         id: 6,
         nombre: "Gengar Pokémon Trainer Gear Plush Backpack",
-        descripcion: "¡Sí, Entrenadores, es hora de salir y lucir su Equipo de Entrenador Pokémon! Este colorido cordón con portatarjetas está inspirado en un Pase de Incursión de Pokémon GO.",
+        descripcion: "¡Sal ahí afuera con una mochila de peluche de Gengar en un vibrante color púrpura! Cuenta con una sonrisa de dientes afilados y un pequeño compartimento para llevar lo esencial en un día fuera.",
         precio: 34.99,
         unidades: 17,
         valoracion: 4,
@@ -59,7 +59,7 @@ const productosIniciales = [
     {
         id: 7,
         nombre: "Pokémon Delicious Adventure: Galar Toast Curry Takedown Figure",
-        descripcion: "¡Sí, Entrenadores, es hora de salir y lucir su Equipo de Entrenador Pokémon! Este colorido cordón con portatarjetas está inspirado en un Pase de Incursión de Pokémon GO.",
+        descripcion: "La región de Galar es conocida por su delicioso curry, algo que los Entrenadores pueden disfrutar junto a sus Pokémon. En esta figura de Pokémon Delicious Adventure, Yamper parece haberlo pasado tan bien comiendo su curry que está a punto de rodar de la alegría.",
         precio: 14.99,
         unidades: 23,
         valoracion: 5,
@@ -73,6 +73,15 @@ const productosIniciales = [
         unidades: 2,
         valoracion: 5,
         urlImagen: "public/img/ratones.jpg"
+    },
+    {
+        id: 9,
+        nombre: "Shinx Sitting Cuties Plush - 6 In.",
+        descripcion: "El peluche Shinx Sitting Cuties está relleno con microperlas, por lo que se sienta cuando lo colocas sobre una superficie plana. Este peluche de tamaño palma es una forma divertida y encantadora de mostrar tu Pokémon tipo Eléctrico favorito, originalmente descubierto en Sinnoh.",
+        precio: 16.99,
+        unidades: 12,
+        valoracion: 5,
+        urlImagen: "public/img/shinx.jpg"
     },
 ];
 
