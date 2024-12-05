@@ -16,6 +16,7 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.6",
+    "jspdf": "^2.5.2",
     "svelte-routing": "^2.13.0"
   }
 }
