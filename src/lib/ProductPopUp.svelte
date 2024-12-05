@@ -267,12 +267,14 @@
 
     .product-info__description {
         background-color: white;
+        text-align: justify;
         height: 100%;
         border-radius: 10px;
         padding: 20px;
         font-size: 18px;
         border: 4px solid #fde379;
         width: 100%;
+        overflow-y: scroll;
     }
 
     .product-unidades-price {
