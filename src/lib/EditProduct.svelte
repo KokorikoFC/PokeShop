@@ -292,6 +292,10 @@
         border-radius: 10px;
         border: 4px solid #fde379;
     }
+    .input-descripcion::-webkit-scrollbar{
+        width: 8px;
+    }
+
 
     .product-unidades-price {
         display: flex;

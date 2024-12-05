@@ -276,6 +276,7 @@
         align-items: center;
         flex-direction: column;
     }
+    
 
     .input-nombre {
         background-color: white;
@@ -295,6 +296,9 @@
         border: none;
         border-radius: 10px;
         border: 4px solid #fde379;
+    }
+    .input-descripcion::-webkit-scrollbar{
+        width: 8px;
     }
 
     .product-unidades-price {

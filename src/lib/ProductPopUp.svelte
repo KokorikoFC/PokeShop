@@ -276,7 +276,18 @@
         width: 100%;
         overflow-y: scroll;
     }
-
+    .product-info__description::-webkit-scrollbar{
+        width: 8px;
+    }
+    /*
+    .product-info__description::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    .product-info__description::-webkit-scrollbar-thumb{
+        background: #724a1858;
+        border-radius: 4px;
+    }
+*/
     .product-unidades-price {
         display: flex;
         justify-content: space-around;

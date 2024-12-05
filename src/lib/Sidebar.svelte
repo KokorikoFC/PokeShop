@@ -41,9 +41,7 @@
         display: none;
     }
     .footerCont {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
+        display: none;
     }
     .footerMediaCont {
         display: flex;
@@ -62,6 +60,7 @@
         align-items: center;
         list-style: none;
         margin-bottom: 0;
+        width: 80%;
     }
 
     a {
@@ -116,6 +115,7 @@
             justify-content: center;
             font-size: 24px;
             gap: 80px;
+            width: 100%;
         }
         a {
             background-color: #724a18;
@@ -126,6 +126,11 @@
             color: rgb(255, 255, 255);
             font-size: 22px;
         }
+        .footerCont {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
     }
 </style>
 
