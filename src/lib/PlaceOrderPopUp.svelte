@@ -157,7 +157,6 @@
 
     h2 {
         text-align: center;
-        color: #333;
     }
 
     .error {
@@ -220,5 +219,16 @@
 
     .btn-secondary:hover {
         background-color:  #473d34;
+    }
+    @media (max-width: 991.98px) {
+        .placeOrder-container {
+            left: 50%;
+            top: 50%;
+            height: 98vh;
+            width: 95%;
+            z-index: 5;
+            padding: 30px;
+            justify-content: space-between;
+        }
     }
 </style>

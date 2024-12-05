@@ -138,9 +138,8 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        background-color: #f7f7f7;
+        background-color: #edaf52;
         padding: 1.5rem;
-        border: 1px solid #ddd;
         border-radius: 10px;
     }
 
@@ -157,7 +156,7 @@
     .form-group input {
         padding: 0.5rem;
         font-size: 1rem;
-        border: 1px solid #ccc;
+        border:none;
         border-radius: 5px;
     }
 
@@ -176,7 +175,7 @@
     }
 
     .btn-primary {
-        background-color: #007bff;
+        background-color: #887464;
         color: #fff;
     }
 
@@ -196,28 +195,31 @@
     /* Table styles */
     .table-wrapper {
         margin-top: 2rem;
-        overflow-x: auto; /* Asegura que las tablas sean desplazables horizontalmente si es necesario */
+        overflow-x: auto; 
     }
 
     table {
         width: 100%;
         border-collapse: collapse;
+        margin: 100px 0px;
     }
 
     table th,
     table td {
         padding: 0.75rem;
-        border: 1px solid #ddd;
         text-align: left;
+        background-color:#fde3798f ;
+        text-align: center;
     }
 
     table th {
-        background-color: #f1f1f1;
+        background-color: #fde379;
     }
 
     .actions {
         display: flex;
-        gap: 0.5rem;
+        justify-content: space-around;
+        align-items: center;
     }
 
     .btn-edit {

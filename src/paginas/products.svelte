@@ -145,6 +145,7 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 25px;
+        width: 100%;
     }
     .content {
         display: flex;
@@ -270,6 +271,9 @@
         .addProduct,
         .historial {
             width: fit-content;
+        }
+        .pedidos-container{
+            width: auto;
         }
     }
 </style>

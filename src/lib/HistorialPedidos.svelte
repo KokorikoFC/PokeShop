@@ -142,9 +142,6 @@
         color: #555;
     }
 
-    .producto, .cliente {
-        font-weight: bold;
-    }
 
     /* Scroll estilizado */
     .historialPedidosCont::-webkit-scrollbar {
@@ -163,4 +160,9 @@
     .historialPedidosCont::-webkit-scrollbar-thumb:hover {
         background: #724a18;
     }
+     @media (max-width: 991.98px) {
+        .historial {
+            width: 100%;
+        }
+     }
 </style>
