@@ -105,6 +105,7 @@
         width: 100%;
     }
     .downloadBtnCont {
+        display: flex;
         width: 100%;
     }
     .downloadBtn {
