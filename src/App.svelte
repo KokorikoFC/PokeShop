@@ -4,6 +4,7 @@
     //import viteLogo from "/vite.svg";
     import Productos from "./paginas/products.svelte";
     import Informes from "./paginas/informes.svelte";
+    import Clientes from "./paginas/clientes.svelte";
     import Sidebar from "./lib/Sidebar.svelte";
     import "bootstrap/dist/css/bootstrap.min.css";
 </script>
@@ -42,6 +43,9 @@
             </Route>
             <Route path="/inventario">
                 <Productos cols="col-lg-10 col-sm-12 order-1 order-lg-2"/>
+            </Route>
+            <Route path="/clientes">
+                <Clientes cols="col-lg-10 col-sm-12 order-1 order-lg-2"/>
             </Route>
         </Router>
     </div>

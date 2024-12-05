@@ -143,6 +143,7 @@
         <ul class="col-7 col-lg-12">
             <a href="/informes"><li>Informe</li></a>
             <a href="/inventario"><li>Inventario</li></a>
+            <a href="/clientes"><li>Clientes</li></a>
         </ul>
 
         <div class="footerCont col-3 col-lg-12">
