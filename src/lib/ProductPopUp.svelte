@@ -71,11 +71,6 @@
         console.log("Añadir:", selectedProduct);
         if (cantidad > 0) {
             productosStore.updateUnidades(selectedProduct.id, cantidad);
-            addPedido({
-                nombre: selectedProduct.nombre,
-                cantidad,
-                fecha: new Date().toLocaleString(),
-            });
             alertMessage.set(
                 `Pedido realizado: ${cantidad} unidades de ${selectedProduct.nombre}`,
             );
@@ -165,7 +160,7 @@
             </div>
         </div>
         <div class="orderBtns">
-            <button on:click={hacerPedido}>Añadir producto</button>
+            <button on:click={hacerPedido}>Añadir unidades</button>
             <button id="btnCancelar" on:click={ocultarHacerPedido}
                 >Cancelar</button
             >

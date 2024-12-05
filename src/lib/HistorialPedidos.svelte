@@ -1,9 +1,10 @@
 <script>
     import { pedidosStore } from "../lib/stores/store_orders.js";
+
     let historialPedidos = [];
     let mostrarHistorial = true;
 
-    // Suscripción reactiva para mantener actualizado el historial de pedidos
+    // Suscripción reactiva al store de pedidos
     $: historialPedidos = $pedidosStore;
 
     const cerrarHistorial = () => {
@@ -31,24 +32,32 @@
             <hr>
             <div class="historialPedidosCont">
                 <ul>
-                    {#each historialPedidos as pedido (pedido.fecha)}
+                    {#each historialPedidos as pedido (pedido.id)}
                         <li>
                             <div class="pedido">
-                                <span class="fecha">{pedido.fecha}</span>
-                                <span class="nombre">{pedido.nombre}</span>
-                                <span class="cantidad">{pedido.cantidad} unidades</span>
+                                <span class="fecha">
+                                    <strong>Fecha:</strong> {new Date(pedido.fecha).toLocaleString()}
+                                </span>
+                                <span class="producto">
+                                    <strong>Producto:</strong> {pedido.producto.nombre}
+                                </span>
+                                <span class="cliente">
+                                    <strong>Cliente:</strong> {pedido.cliente.nombre} - {pedido.cliente.email}
+                                </span>
+                                <span class="cantidad">
+                                    <strong>Cantidad:</strong> {pedido.cantidad} unidades
+                                </span>
                             </div>
                         </li>
                     {/each}
                 </ul>
             </div>
-            
         </div>
     </div>
 {/if}
 
 <style>
-    /* Contenedor principal que cubre toda la pantalla */
+    /* Estilo del contenedor principal */
     .historialCont {
         position: absolute;
         top: 0;
@@ -63,7 +72,6 @@
         padding: 10px;
     }
 
-    /* Botón de cierre */
     .close {
         position: absolute;
         top: 10px;
@@ -73,10 +81,9 @@
     }
 
     .close:hover {
-        transform: scale(1.2); /* Efecto de zoom */
+        transform: scale(1.2); 
     }
 
-    /* Panel del historial */
     .historial {
         position: relative;
         background-color: #fde379;
@@ -90,22 +97,23 @@
         flex-direction: column;
     }
 
-
     .historial h2 {
         text-align: center;
         font-size: 1.5rem;
         color: #333;
     }
-    .historial hr{
+
+    .historial hr {
         margin: 20px 0;
         border: 3px solid #724a18;
         opacity: 1;
         border-radius: 30px;
     }
-    .historialPedidosCont{
-        overflow-y: scroll;
+
+    .historialPedidosCont {
+        overflow-y: auto;
     }
-    /* Lista de pedidos */
+
     ul {
         list-style: none;
         padding: 0;
@@ -116,7 +124,6 @@
         margin-bottom: 15px;
     }
 
-    /* Cada pedido */
     .pedido {
         background: white;
         border-radius: 5px;
@@ -127,23 +134,16 @@
     }
 
     .pedido:hover {
-        background: #f0f8ff; /* Efecto hover */
+        background: #f0f8ff;
     }
 
-    .fecha {
-        font-size: 0.9rem;
-        color: #666;
-    }
-
-    .nombre {
-        font-size: 1.1rem;
-        font-weight: bold;
-        color: #333;
-    }
-
-    .cantidad {
+    .fecha, .producto, .cliente, .cantidad {
         font-size: 0.95rem;
         color: #555;
+    }
+
+    .producto, .cliente {
+        font-weight: bold;
     }
 
     /* Scroll estilizado */
@@ -160,7 +160,7 @@
         border-radius: 4px;
     }
 
-    .historial::-webkit-scrollbar-thumb:hover {
+    .historialPedidosCont::-webkit-scrollbar-thumb:hover {
         background: #724a18;
     }
 </style>

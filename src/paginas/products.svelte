@@ -5,6 +5,7 @@
     import Productos from "../lib/Product.svelte";
     import AddProduct from "../lib/AddProduct.svelte";
     import ProductPopUp from "../lib/ProductPopUp.svelte";
+    import PlaceOrderPopUp from "../lib/PlaceOrderPopUp.svelte";
     import AlertPopUp from "../lib/AlertPopUp.svelte";
     import Historial from "../lib/HistorialPedidos.svelte";
     import EditProduct from "../lib/EditProduct.svelte";
@@ -14,6 +15,7 @@
     let showAddProduct = false; // Controla si se muestra el formulario
     let showEditProduct = false; // Controla si se muestra el formulario
     let selectedProduct = null; // Producto seleccionado
+    let showPlacerOrder = false; // Controla si se muestra el formulario
     let historial = false; // Controla si se muestra el historial
 
     // Se suscribe al store para obtener los productos
@@ -27,11 +29,77 @@
         historial = !historial; // Alterna la visibilidad
     }
 
+    function toggleShowPlacerOrder() {
+        showPlacerOrder = !showPlacerOrder; // Alterna la visibilidad
+    }
+
     function handleProductClick(event) {
         console.log("Producto seleccionado:", event.detail); // Verifica el producto
         selectedProduct = event.detail; // Extrae el producto del evento
     }
 </script>
+
+<main id="main" class={cols}>
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="title_perfil">
+            <div class="title">
+                <h1>Productos</h1>
+            </div>
+            <div class="perfil">
+                <figure class="icono">
+                    <img src="public/img/foto.jpg" alt="perfil" />
+                </figure>
+                <p>Antonio Perez</p>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="pedidos-container">
+                <div class="addProduct" id="addProduct" on:click={toggleAddProduct}>
+                    <p>Añadir Producto</p>
+                </div>
+                <div class="historial" on:click={toggleShowPlacerOrder}>
+                    <p>Realizar Pedido</p>
+                </div>
+            </div>
+            <div class="historial" on:click={toggleHistorial}>
+                <p>Historial</p>
+            </div>
+        </div>
+
+        <div class="products" id="products">
+            <!-- Captura el evento clickProduct -->
+            <Productos {productosData} on:clickProduct={handleProductClick} />
+        </div>
+
+        {#if showAddProduct}
+            <AddProduct on:closePopup={() => (showAddProduct = false)} />
+        {/if}
+        {#if showEditProduct}
+            <EditProduct
+                producto={selectedProduct}
+                on:closePopup={() => (showEditProduct = false)}
+            />
+        {/if}
+
+        {#if showPlacerOrder}
+            <PlaceOrderPopUp
+                on:closePopup={() => (showPlacerOrder = false)}
+            />
+        {/if}   
+
+        {#if selectedProduct}
+            <ProductPopUp
+                {selectedProduct}
+                on:closePopup={() => (selectedProduct = null)}
+            />
+        {/if}
+        <AlertPopUp />
+    </div>
+</main>
+{#if historial}
+    <Historial />
+{/if}
 
 <style>
     main {
@@ -70,6 +138,13 @@
         transition:
             background-color 0.3s ease,
             transform 0.2s ease;
+    }
+
+    .pedidos-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 25px;
     }
     .content {
         display: flex;
@@ -176,7 +251,6 @@
     .historial:hover {
         transition: all 0.3s ease;
         background-color: #edaf52;
-
     }
     @media (min-width: 992px) {
         main {
@@ -186,65 +260,16 @@
             overflow-y: scroll;
             border-radius: 35px;
         }
-        .menu{
+        .menu {
             width: 100%;
             display: flex;
             justify-content: space-between;
             flex-direction: row;
         }
-        
-    .addProduct,
-    .historial {
-        width: 150px;
-    }
 
+        .addProduct,
+        .historial {
+            width: fit-content;
+        }
     }
 </style>
-
-<main id="main" class={cols}>
-    <div class="overlay"></div>
-    <div class="content">
-        <div class="title_perfil">
-            <div class="title">
-                <h1>Productos</h1>
-            </div>
-            <div class="perfil">
-                <figure class="icono">
-                    <img src="public/img/foto.jpg" alt="perfil" />
-                </figure>
-                <p>Antonio Perez</p>
-            </div>
-        </div>
-        <div class="menu">
-            <div class="addProduct" id="addProduct" on:click={toggleAddProduct}>
-                <p>Añadir</p>
-            </div>
-            <div class="historial" on:click={toggleHistorial}>
-                <p>Historial</p>
-            </div>
-        </div>
-
-        <div class="products" id="products">
-            <!-- Captura el evento clickProduct -->
-            <Productos {productosData} on:clickProduct={handleProductClick} />
-        </div>
-
-        {#if showAddProduct}
-            <AddProduct on:closePopup={() => (showAddProduct = false)} />
-        {/if}
-        {#if showEditProduct}
-            <EditProduct producto={selectedProduct} on:closePopup={() => (showEditProduct = false)} />
-        {/if}
-
-        {#if selectedProduct}
-            <ProductPopUp
-                {selectedProduct}
-                on:closePopup={() => (selectedProduct = null)}
-            />
-        {/if}
-        <AlertPopUp />
-    </div>
-</main>
-{#if historial}
-    <Historial />
-{/if}
