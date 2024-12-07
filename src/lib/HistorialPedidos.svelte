@@ -2,14 +2,18 @@
     import { pedidosStore } from "../lib/stores/store_orders.js";
 
     let historialPedidos = [];
-    let mostrarHistorial = true;
+    export let mostrarHistorial = false; // Se controla desde el padre
 
-    // Suscripción reactiva al store de pedidos
     $: historialPedidos = $pedidosStore;
 
     const cerrarHistorial = () => {
         mostrarHistorial = false;
+        // Notifica al componente padre que el historial se cerró
+        dispatch("cerrar");
     };
+
+    import { createEventDispatcher } from "svelte";
+    const dispatch = createEventDispatcher();
 </script>
 
 {#if mostrarHistorial}
@@ -55,6 +59,7 @@
         </div>
     </div>
 {/if}
+
 
 <style>
     /* Estilo del contenedor principal */

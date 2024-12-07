@@ -83,6 +83,33 @@ const productosIniciales = [
         valoracion: 5,
         urlImagen: "public/img/shinx.jpg"
     },
+    {
+        id: 10,
+        nombre: "Birthday Pikachu Poké Plush - 9 In.",
+        descripcion: "Con un sombrero colorido y un regalo brillante, Pikachu está vestido de gala y listo para celebrar el cumpleaños de alguien. Ya sea que le regales este divertido peluche a un amigo o lo exhibas como centro de mesa para celebrar tu propio día especial, es una manera fácil de difundir la alegría de Pokémon.",
+        precio: 29.99,
+        unidades: 7,
+        valoracion: 5,
+        urlImagen: "public/img/birthdayPikachuPokePlush-9In.jpg"
+    },
+    {
+        id: 11,
+        nombre: "Pokémon: Let's Go, Pikachu! for Nintendo Switch",
+        descripcion: "Regresa a la región de Kanto y vive una aventura clásica de Pokémon de una forma totalmente nueva con Pokémon: Let's Go, Pikachu! Este título fue creado por GAME FREAK, los desarrolladores de los principales títulos de rol de Pokémon. Pokémon: Let's Go, Pikachu! presenta un nuevo estilo de juego que todos pueden disfrutar, combinado con la diversión de coleccionar Pokémon.",
+        precio: 59.99,
+        unidades: 3,
+        valoracion: 4.5,
+        urlImagen: "public/img/pokemonLetsGoPikachuForNintendoSwitch.jpg"
+    },
+    {
+        id: 12,
+        nombre: "Oshawott Poké Plush - 19 ¾ In.",
+        descripcion: "Deliciosamente estoico, este peluche de Oshawott es fiel al tamaño de la Pokédex. Desde sus adorables orejas y nariz hasta su cola flexible, está lleno de detalles divertidos. Demuestra tu amor por el primer compañero Pokémon de tipo Agua de Unova y Hisui con este adorable (¡y grande!) peluche.",
+        precio: 59.99,
+        unidades: 16,
+        valoracion: 3.5,
+        urlImagen: "public/img/OshawottPokePlush-19In.jpg"
+    },
 ];
 
 // Recuperar datos de Local Storage (si existen)

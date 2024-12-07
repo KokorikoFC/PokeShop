@@ -43,7 +43,7 @@
 </script>
 
 <main class={cols}>
-    <h1>Informe de Ventas</h1>
+    <h1>Informe de Vent as</h1>
     <div class="seccion">
         <div class="downloadBtnCont">
             <div class="downloadBtn" on:click={generarInformePDF}>
@@ -129,6 +129,7 @@
     @media (min-width: 992px) {
         .downloadBtnCont {
             justify-content: end;
+            margin-right: 30px;
         }
         .downloadBtn {
             width: 200px;

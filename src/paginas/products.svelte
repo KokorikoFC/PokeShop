@@ -26,7 +26,11 @@
     }
 
     function toggleHistorial() {
-        historial = !historial; // Alterna la visibilidad
+        historial = true; // Siempre lo abre al hacer clic
+    }
+
+    function cerrarHistorial() {
+        historial = false; // Resetea la variable cuando el historial se cierra
     }
 
     function toggleShowPlacerOrder() {
@@ -98,7 +102,10 @@
     </div>
 </main>
 {#if historial}
-    <Historial />
+        <Historial
+            mostrarHistorial={historial}
+            on:cerrar={cerrarHistorial}
+        />
 {/if}
 
 <style>
