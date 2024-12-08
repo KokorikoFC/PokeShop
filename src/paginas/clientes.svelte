@@ -45,7 +45,10 @@
 
 <main class={cols}>
     <section class="container">
-        <h1>Gestión de Clientes</h1>
+        <div class="tituloContainer">
+
+            <h1>Gestión de Clientes</h1>
+        </div>
 
         <!-- Formulario -->
         <form on:submit|preventDefault={agregarCliente}>
@@ -108,6 +111,16 @@
         padding: 3%;
         overflow: hidden;
         position: relative;
+    }
+
+    .tituloContainer {
+        width: 100%;
+        display: flex;
+        color: black;
+    }
+
+    .tituloContainer h1{
+        color: black;
     }
 
     p {

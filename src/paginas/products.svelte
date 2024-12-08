@@ -48,7 +48,7 @@
     <div class="content">
         <div class="title_perfil">
             <div class="title">
-                <h1>Productos</h1>
+                <h1>Inventario</h1>
             </div>
             <div class="perfil">
                 <figure class="icono">
