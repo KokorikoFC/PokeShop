@@ -43,7 +43,7 @@
 </script>
 
 <main class={cols}>
-    <h1>Informe de Vent as</h1>
+    <h1>Informe de Ventas</h1>
     <div class="seccion">
         <div class="downloadBtnCont">
             <div class="downloadBtn" on:click={generarInformePDF}>
