@@ -138,7 +138,7 @@
     <div class="navContent row">
         <div class="headerLogoCont col-2 col-lg-12">
             <div class="logoNameCont">
-                <h2>Poke Shop</h2>
+                <h2>PokeShop</h2>
                 <img src="public/img/pokeball.png" alt="">
             </div>
 
