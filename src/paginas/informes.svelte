@@ -7,39 +7,87 @@
     import jsPDF from "jspdf";
 
     // Función para generar el informe en PDF
-    function generarInformePDF() {
-        const doc = new jsPDF();
+function generarInformePDF() {
+    const doc = new jsPDF();
 
-        // Título del informe
-        doc.setFontSize(22);
-        doc.text("Informe de Ventas", 20, 20);
+    // Configuración inicial de márgenes y fuentes
+    const marginLeft = 20;
+    let yPosition = 20; // Posición vertical inicial
 
-        // Subtítulos y datos ficticios
-        doc.setFontSize(16);
-        doc.text("Productos Mejor Vendidos", 20, 40);
-        doc.setFontSize(12);
-        doc.text("1. Gengar Pokémon Trainer Gear Plush Backpack - 150 unidades", 20, 50);
-        doc.text("2. Pokémon Trainer Gear Raid Pass Lanyard & Badge Holder - 120 unidades", 20, 60);
-        doc.text("3. Nendoroid Raihan Posable Figure - 100 unidades", 20, 70);
+    // Título principal
+    doc.setFont("Helvetica", "bold");
+    doc.setFontSize(22);
+    doc.text("Informe de Ventas", marginLeft, yPosition);
+    yPosition += 10;
 
-        doc.setFontSize(16);
-        doc.text("Ganancias del Año", 20, 90);
-        doc.setFontSize(12);
-        doc.text("Total: 25,000 €", 20, 100);
+    // Línea divisoria
+    doc.setDrawColor(0, 0, 0);
+    doc.setLineWidth(0.5);
+    doc.line(marginLeft, yPosition, 190, yPosition); // Desde el margen izquierdo al derecho
+    yPosition += 10;
 
-        doc.setFontSize(16);
-        doc.text("Pedidos y Gastos", 20, 120);
-        doc.setFontSize(12);
-        doc.text("Pedidos Totales: 75", 20, 130);
-        doc.text("Gastos Totales: 10,000 €", 20, 140);
+    // Sección: Productos mejor vendidos
+    doc.setFont("Helvetica", "bold");
+    doc.setFontSize(16);
+    doc.text("Productos Mejor Vendidos", marginLeft, yPosition);
+    yPosition += 10;
 
-        // Pie de página
-        doc.setFontSize(10);
-        doc.text("Informe generado automáticamente", 20, 270);
+    doc.setFont("Helvetica", "normal");
+    doc.setFontSize(12);
+    const productos = [
+        "1. Gengar Pokémon Trainer Gear Plush Backpack - 150 unidades",
+        "2. Pokémon Trainer Gear Raid Pass Lanyard & Badge Holder - 120 unidades",
+        "3. Nendoroid Raihan Posable Figure - 100 unidades"
+    ];
+    productos.forEach((producto) => {
+        doc.text(producto, marginLeft, yPosition);
+        yPosition += 10;
+    });
 
-        // Descargar el PDF
-        doc.save("informe_ventas.pdf");
-    }
+    yPosition += 10;
+
+    // Sección: Ganancias del año
+    doc.setFont("Helvetica", "bold");
+    doc.setFontSize(16);
+    doc.text("Ganancias del Año", marginLeft, yPosition);
+    yPosition += 10;
+
+    doc.setFont("Helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text("Total: 25,000 €", marginLeft, yPosition);
+    yPosition += 20;
+
+    // Sección: Pedidos y gastos
+    doc.setFont("Helvetica", "bold");
+    doc.setFontSize(16);
+    doc.text("Pedidos y Gastos", marginLeft, yPosition);
+    yPosition += 10;
+
+    doc.setFont("Helvetica", "normal");
+    doc.setFontSize(12);
+    const pedidosYGastos = [
+        "Pedidos Totales: 75",
+        "Gastos Totales: 10,000 €"
+    ];
+    pedidosYGastos.forEach((item) => {
+        doc.text(item, marginLeft, yPosition);
+        yPosition += 10;
+    });
+
+    // Pie de página
+    doc.setFont("Helvetica", "italic");
+    doc.setFontSize(10);
+    doc.setTextColor(100);
+    doc.text(
+        "Informe generado automáticamente el " + new Date().toLocaleDateString(),
+        marginLeft,
+        280
+    );
+
+    // Guardar el PDF
+    doc.save("informe_ventas.pdf");
+}
+
 </script>
 
 <main class={cols}>
